@@ -25,7 +25,16 @@ export function parseEnv(raw: Record<string, string | undefined>) {
   }
   // The hosting platform is authoritative; APP_ENV is a fallback outside Vercel.
   const appEnv = raw.VERCEL_ENV === 'development' ? 'local' : raw.VERCEL_ENV || raw.APP_ENV;
-  const result = schema.safeParse({...raw, APP_ENV: appEnv});
+  let siteUrl = raw.NEXT_PUBLIC_SITE_URL?.trim() || undefined;
+  const localSite = siteUrl && URL.canParse(siteUrl)
+    && ['localhost', '127.0.0.1', '[::1]'].includes(new URL(siteUrl).hostname);
+  if (raw.VERCEL_ENV === 'production' || raw.VERCEL_ENV === 'preview') {
+    const deploymentHost = raw.VERCEL_ENV === 'production'
+      ? raw.VERCEL_PROJECT_PRODUCTION_URL || raw.VERCEL_URL
+      : raw.VERCEL_URL;
+    if ((!siteUrl || localSite) && deploymentHost) siteUrl = `https://${deploymentHost}`;
+  }
+  const result = schema.safeParse({...raw, APP_ENV: appEnv, NEXT_PUBLIC_SITE_URL: siteUrl});
   if (!result.success) throw new Error(`Invalid environment fields: ${result.error.issues.map(i => i.path.join('.')).join(', ')}`);
   const env = result.data;
   if (env.NEXT_PUBLIC_USE_FIREBASE_EMULATORS === 'true') {

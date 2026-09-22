@@ -33,6 +33,8 @@ npm run test:rules
 
 ## 배포와 환경
 
+`NEXT_PUBLIC_SITE_URL`이 비어 있거나 localhost이면 Vercel의 HTTPS 배포 주소를 사용한다. production은 `VERCEL_PROJECT_PRODUCTION_URL` → `VERCEL_URL`, preview는 `VERCEL_URL` 순으로 결정한다. 명시한 HTTPS 도메인은 유지한다.
+
 Vercel에서는 `VERCEL_ENV`로 실행 환경을 자동 결정한다. `APP_ENV`는 Vercel 밖에서만 사용하므로 별도로 맞출 필요가 없다. 배포 시 HTTPS 사이트 URL, 에뮬레이터 비활성화, Firebase 프로젝트 일치 검증은 유지한다.
 
 Firebase는 사용자가 지정한 `barum-10aad`를 사용한다. `FIREBASE_PROJECT_ID`와 클라이언트 프로젝트 ID가 일치해야 하며, 로컬에서도 emulator=false이면 서버 Admin은 실제 서비스 계정을 사용한다. measurementId는 연결 설정에 반영되어 있지만 Analytics 자동 수집은 아직 초기화하지 않는다. `vercel.json`은 글꼴 준비를 포함한 `npm run build`를 실행한다.
