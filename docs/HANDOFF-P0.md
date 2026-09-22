@@ -2,6 +2,8 @@
 
 담당: Astra. 2026-09-22.
 
+**후속 Firebase 변경:** 사용자 제공 SDK 설정과 루트 서비스 계정으로 `barum-10aad`에 통일했다. `.env.local` 생성 완료, emulator=false. `.firebaserc` 기본 프로젝트도 변경했다. 과거 staging/prod 및 서비스 계정 미사용 기록은 초기 작업 이력이다. 현재 키는 서버용 base64 환경변수에만 반영하고 Git에 포함하지 않는다. 오래된 Vercel 설정 스크립트는 제거했으며 Vercel 자체는 조작하지 않았다. 에뮬레이터 테스트 명령은 명시적으로 `demo-barum`을 유지한다.
+
 **상태: 로컬 구현·검증 완료. GitHub 원격은 `jejuailabs/barum`, 기본 브랜치는 `main`. Vercel 자동 연결과 배포는 사용자가 직접 관리한다. Preview 완료 증거는 아직 없다.**
 
 ## DoD

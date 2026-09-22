@@ -14,7 +14,8 @@ function initializeServices() {
     projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ?? 'demo-barum',
     storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET ?? 'demo-barum.appspot.com',
     messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID ?? '000000000000',
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID ?? 'demo-app'
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID ?? 'demo-app',
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
   });
   const auth = getAuth(app);
   const db = getFirestore(app);

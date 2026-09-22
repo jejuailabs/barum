@@ -10,10 +10,10 @@ const schema = z.object({
   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: optional,
   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: optional,
   NEXT_PUBLIC_FIREBASE_APP_ID: optional,
+  NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: optional,
   NEXT_PUBLIC_USE_FIREBASE_EMULATORS: z.enum(['true', 'false']).default('true'),
   FIREBASE_SERVICE_ACCOUNT_JSON: optional,
-  FIREBASE_STAGING_PROJECT_ID: optional,
-  FIREBASE_PRODUCTION_PROJECT_ID: optional
+  FIREBASE_PROJECT_ID: optional
 });
 
 /** Validate only enabled Phase 0 services, without leaking secret values into errors. */
@@ -29,17 +29,17 @@ export function parseEnv(raw: Record<string, string | undefined>) {
   if (raw.VERCEL_ENV && raw.VERCEL_ENV !== 'development' && env.APP_ENV !== raw.VERCEL_ENV) {
     throw new Error('APP_ENV must match VERCEL_ENV');
   }
-  if (env.APP_ENV !== 'local') {
+  if (env.NEXT_PUBLIC_USE_FIREBASE_EMULATORS === 'true') {
+    if (env.APP_ENV !== 'local') throw new Error('Deployed apps must not use emulators');
+    if (env.NEXT_PUBLIC_FIREBASE_PROJECT_ID && env.NEXT_PUBLIC_FIREBASE_PROJECT_ID !== 'demo-barum') throw new Error('Local emulators require demo-barum');
+  } else {
     const required = ['NEXT_PUBLIC_FIREBASE_API_KEY', 'NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN',
       'NEXT_PUBLIC_FIREBASE_PROJECT_ID', 'NEXT_PUBLIC_FIREBASE_APP_ID',
-      'FIREBASE_STAGING_PROJECT_ID', 'FIREBASE_PRODUCTION_PROJECT_ID'] as const;
+      'FIREBASE_PROJECT_ID'] as const;
     const missing = required.filter(key => !env[key]);
     if (missing.length) throw new Error(`Missing environment fields: ${missing.join(', ')}`);
-    if (env.NEXT_PUBLIC_USE_FIREBASE_EMULATORS !== 'false') throw new Error('Deployed apps must not use emulators');
-    if (env.FIREBASE_STAGING_PROJECT_ID === env.FIREBASE_PRODUCTION_PROJECT_ID) throw new Error('Staging and production must use distinct projects');
-    const expected = env.APP_ENV === 'preview' ? env.FIREBASE_STAGING_PROJECT_ID : env.FIREBASE_PRODUCTION_PROJECT_ID;
-    if (env.NEXT_PUBLIC_FIREBASE_PROJECT_ID !== expected) throw new Error('Firebase project does not match APP_ENV');
-    if (!env.NEXT_PUBLIC_SITE_URL.startsWith('https://')) throw new Error('Deployed site URL must use HTTPS');
+    if (env.NEXT_PUBLIC_FIREBASE_PROJECT_ID !== env.FIREBASE_PROJECT_ID) throw new Error('Firebase client/server project mismatch');
   }
+  if (env.APP_ENV !== 'local' && !env.NEXT_PUBLIC_SITE_URL.startsWith('https://')) throw new Error('Deployed site URL must use HTTPS');
   return env;
 }

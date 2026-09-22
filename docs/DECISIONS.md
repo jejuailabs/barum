@@ -2,6 +2,8 @@
 
 2026-09-22. 기존 통합 스펙을 기준으로 구현했으며, 아래 항목이 오래된 예시보다 우선한다.
 
+**사용자 확정 변경:** Firebase 연결은 `barum-10aad` 단일 프로젝트로 변경했다. 아래 초기 staging/prod 분리 결정은 이 지시로 대체한다. `.env.local`에 공개 SDK 설정과 서버 전용 base64 서비스 계정을 저장하며, local 환경 여부와 별도로 emulator 플래그로 실제/로컬 연결을 선택한다. 클라이언트·서버 프로젝트 일치 검증은 유지한다. 이전 프로젝트는 삭제하지 않았고 Vercel은 조작하지 않았다.
+
 1. **문서 경로**: 실제 파일은 1~7번 통합 문서다. `00-INDEX.md`를 복구하고 AGENTS.md의 로드맵 참조를 수정했다. 구버전 브리핑은 사용하지 않는다.
 2. **버전**: Next.js 15.5.25 / React 19 / Tailwind 3 / next-intl 4 / Node 22. 기존 Tailwind config 기반 명세를 유지한다. 정확한 패치 버전은 `package-lock.json`으로 고정한다.
 3. **의존성 패치**: Firebase Admin 14.4 이상을 사용한다. Next.js 내부 PostCSS는 패치된 8.5.23 이상으로 override했다. gaxios는 uuid의 v4 API만 사용함을 확인하고 CJS를 지원하는 패치된 uuid 11.1.1 이상으로 한정 override했다. 운영 의존성 audit와 빌드를 재검증한다. 개발 도구의 잔여 advisory는 HANDOFF에 기록한다.

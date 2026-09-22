@@ -6,7 +6,7 @@
 
 ## 로컬 실행
 
-Node 22가 필요하다. `npm ci` 후 `npm run dev`를 실행한다. 로컬 기본값만으로 UI를 실행할 수 있으며 `.env.example`은 선택적으로 `.env.local`로 복사한다. 실제 비밀키를 커밋하지 않는다.
+Node 22가 필요하다. `npm ci` 후 `npm run dev`를 실행한다. 현재 `.env.local`은 사용자가 지정한 `barum-10aad` 프로젝트에 연결한다. 새 환경에서는 `.env.example`을 복사하고 공개 API 키와 서버용 서비스 계정(base64)을 채운다. `.env.local`과 원본 서비스 계정은 Git 제외 대상이다. 환경 파일 없이 실행하면 에뮬레이터용 UI 기본값을 사용한다.
 
 - 홈: http://localhost:3000
 - 토큰 갤러리: http://localhost:3000/dev/gallery
@@ -33,7 +33,7 @@ npm run test:rules
 
 ## 배포와 환경
 
-Vercel 프로젝트: `funjejus-projects/barum`. Firebase: `barum-staging` / `barum-prod`. Preview·production 환경 변수는 따로 등록한다. `src/env.ts`가 환경 혼용을 차단한다. `vercel.json`은 글꼴 준비를 포함한 `npm run build`를 실행한다.
+Firebase는 사용자가 지정한 `barum-10aad`를 사용한다. `FIREBASE_PROJECT_ID`와 클라이언트 프로젝트 ID가 일치해야 하며, 로컬에서도 emulator=false이면 서버 Admin은 실제 서비스 계정을 사용한다. measurementId는 연결 설정에 반영되어 있지만 Analytics 자동 수집은 아직 초기화하지 않는다. `vercel.json`은 글꼴 준비를 포함한 `npm run build`를 실행한다.
 
 GitHub 저장소는 [jejuailabs/barum](https://github.com/jejuailabs/barum), 기본 브랜치는 `main`이다. GitHub Actions 정의는 `.github/workflows/ci.yml`에 있다. push/PR가 생기면 타입·lint·번역·테스트·보안규칙·빌드·번들·브라우저·접근성 검사를 실행한다.
 
