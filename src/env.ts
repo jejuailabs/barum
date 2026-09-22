@@ -23,12 +23,11 @@ export function parseEnv(raw: Record<string, string | undefined>) {
       throw new Error(`Server credential must not be public: ${key}`);
     }
   }
-  const result = schema.safeParse(raw);
+  // The hosting platform is authoritative; APP_ENV is a fallback outside Vercel.
+  const appEnv = raw.VERCEL_ENV === 'development' ? 'local' : raw.VERCEL_ENV || raw.APP_ENV;
+  const result = schema.safeParse({...raw, APP_ENV: appEnv});
   if (!result.success) throw new Error(`Invalid environment fields: ${result.error.issues.map(i => i.path.join('.')).join(', ')}`);
   const env = result.data;
-  if (raw.VERCEL_ENV && raw.VERCEL_ENV !== 'development' && env.APP_ENV !== raw.VERCEL_ENV) {
-    throw new Error('APP_ENV must match VERCEL_ENV');
-  }
   if (env.NEXT_PUBLIC_USE_FIREBASE_EMULATORS === 'true') {
     if (env.APP_ENV !== 'local') throw new Error('Deployed apps must not use emulators');
     if (env.NEXT_PUBLIC_FIREBASE_PROJECT_ID && env.NEXT_PUBLIC_FIREBASE_PROJECT_ID !== 'demo-barum') throw new Error('Local emulators require demo-barum');

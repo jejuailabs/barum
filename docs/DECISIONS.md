@@ -7,7 +7,7 @@
 1. **문서 경로**: 실제 파일은 1~7번 통합 문서다. `00-INDEX.md`를 복구하고 AGENTS.md의 로드맵 참조를 수정했다. 구버전 브리핑은 사용하지 않는다.
 2. **버전**: Next.js 15.5.25 / React 19 / Tailwind 3 / next-intl 4 / Node 22. 기존 Tailwind config 기반 명세를 유지한다. 정확한 패치 버전은 `package-lock.json`으로 고정한다.
 3. **의존성 패치**: Firebase Admin 14.4 이상을 사용한다. Next.js 내부 PostCSS는 패치된 8.5.23 이상으로 override했다. gaxios는 uuid의 v4 API만 사용함을 확인하고 CJS를 지원하는 패치된 uuid 11.1.1 이상으로 한정 override했다. 운영 의존성 audit와 빌드를 재검증한다. 개발 도구의 잔여 advisory는 HANDOFF에 기록한다.
-4. **환경 검증**: 로컬은 `demo-barum` 에뮬레이터를 사용한다. Preview는 `barum-staging`, production은 `barum-prod`만 허용한다. Vercel 환경과 APP_ENV가 다르거나 배포 환경에 emulator=true가 있으면 부팅/빌드를 실패시킨다. 아직 사용하지 않는 기상청·해양·Admin 비밀키는 Phase 0에서 요구하지 않는다. 해당 기능을 활성화할 때 서버에서 필수 검증한다.
+4. **환경 검증**: Firebase는 사용자 지정 `barum-10aad`를 사용하고 에뮬레이터는 `demo-barum`만 허용한다. Vercel에서는 `VERCEL_ENV`를 우선하며 development는 local로 대응한다. `APP_ENV`는 플랫폼 값이 없을 때만 사용한다. 누락·불일치한 APP_ENV로 빌드가 중단되는 문제를 수정했고 검수 갤러리도 같은 환경 판정을 사용한다. 배포 환경의 emulator=true, 비 HTTPS 사이트 URL, Firebase 클라이언트·서버 프로젝트 불일치는 계속 차단한다. 아직 사용하지 않는 기상청·해양·Admin 비밀키는 Phase 0에서 요구하지 않는다. 해당 기능을 활성화할 때 서버에서 필수 검증한다.
 5. **테마**: 기본 설정은 system, 저장 키는 `barum.theme`. head의 동기 스크립트로 첫 페인트 전에 결정하고 OS 변경·다른 탭 변경을 구독한다. 글자 대비를 위해 text-tertiary 및 다크의 text-on-accent 값을 조정했다. 작은 강조 숫자에는 양쪽 테마에서 대비를 확보한 accent 토큰을 사용한다.
 6. **토큰**: 색 리터럴은 CSS 토큰 선언에서만 허용한다. 기상 컬러맵도 CSS 토큰을 참조하는 값/토큰 배열이며 지점 데이터와 무관하다. 기본 색·표면·타이포·간격·라운드·그림자·모션은 Phase 0에서 준비한다.
 7. **글꼴**: Pretendard Variable 및 Noto Sans SC/TC/JP의 unicode-range subset을 자체 호스팅한다. 현재 locale의 CSS만 링크하고 무조건적인 폰트 preload를 하지 않는다. 생성 파일은 `public/fonts`에 놓고 패키지로부터 빌드 시 재생성한다. SIL OFL 라이선스를 함께 복사한다.
