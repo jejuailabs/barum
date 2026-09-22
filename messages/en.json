@@ -1,0 +1,55 @@
+{
+  "app": {
+    "name": "Barum",
+    "description": "A marine and weather platform for understanding Jeju's seas"
+  },
+  "theme": {
+    "label": "Theme",
+    "system": "System",
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "language": {
+    "label": "Language",
+    "ko": "한국어",
+    "en": "English",
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文",
+    "ja": "日本語"
+  },
+  "foundation": {
+    "eyebrow": "A new perspective on Jeju's sea",
+    "title": "A clearer way\nto read the sea.",
+    "description": "Jeju's weather and sea, in one place. Building Barum with five languages and two themes.",
+    "phase": "Phase 0 · Foundation",
+    "gallery": "Explore design tokens",
+    "home": "Back to foundation",
+    "statusTitle": "A considered foundation",
+    "statusLanguage": "Five languages, one experience",
+    "statusTheme": "Clarity, day and night",
+    "statusData": "Separate point and grid data",
+    "notice": "Foundation preview. Live weather data is not connected yet.",
+    "footer": "A new way to understand Jeju's sea",
+    "skip": "Skip to content"
+  },
+  "gallery": {
+    "title": "The language of Barum",
+    "description": "Surfaces, color, typography and motion. Switch themes to explore each token.",
+    "colors": "Color and surface",
+    "colorsDescription": "Every color is connected to a semantic token.",
+    "typography": "Type hierarchy",
+    "typographyDescription": "A readable rhythm for every language and number",
+    "sample": "Jeju's sea",
+    "numbers": "0123456789",
+    "geometry": "Space and motion",
+    "spacing": "Spacing",
+    "radius": "Corners",
+    "motion": "Motion",
+    "weather": "Weather color scales",
+    "weatherDescription": "Data colors remain consistent across themes.",
+    "wind": "Wind · m/s",
+    "temp": "Temperature · °C",
+    "rain": "Rain · mm/h",
+    "wave": "Waves · m"
+  }
+}

@@ -1,0 +1,13 @@
+.git
+.tools
+.next
+node_modules
+test-results
+playwright-report
+docs
+images
+*-debug.log*
+*.tsbuildinfo
+*firebase-adminsdk*.json
+firebase_sdk.txt
+새 텍스트 문서.txt

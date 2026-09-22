@@ -1,0 +1,7 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Phase 0: deny all until each feature's validated contract is implemented.
+    match /{document=**} { allow read, write: if false; }
+  }
+}

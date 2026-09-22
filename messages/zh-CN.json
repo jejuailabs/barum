@@ -1,0 +1,55 @@
+{
+  "app": {
+    "name": "Barum",
+    "description": "了解济州海域的海洋与气象平台"
+  },
+  "theme": {
+    "label": "显示主题",
+    "system": "跟随系统",
+    "dark": "深色",
+    "light": "浅色"
+  },
+  "language": {
+    "label": "语言",
+    "ko": "한국어",
+    "en": "English",
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文",
+    "ja": "日本語"
+  },
+  "foundation": {
+    "eyebrow": "从济州出发，读懂海洋",
+    "title": "读懂海洋，\n从这里开始。",
+    "description": "在同一画面了解济州的天气与海洋。以五种语言、两种主题构建 Barum。",
+    "phase": "Phase 0 · 基础",
+    "gallery": "查看设计变量",
+    "home": "返回基础页面",
+    "statusTitle": "从坚实的基础开始",
+    "statusLanguage": "五种语言，一致体验",
+    "statusTheme": "白天黑夜，清晰可读",
+    "statusData": "区分地点数据与网格数据",
+    "notice": "这是基础预览页面，尚未连接实时气象数据。",
+    "footer": "了解济州海洋的新方式",
+    "skip": "跳转到正文"
+  },
+  "gallery": {
+    "title": "Barum 的设计语言",
+    "description": "界面、色彩、字体与动效。切换主题，查看各项设计变量。",
+    "colors": "色彩与界面",
+    "colorsDescription": "所有颜色均使用语义化变量。",
+    "typography": "字体层级",
+    "typographyDescription": "让每种语言和数字都易于阅读",
+    "sample": "济州的海洋",
+    "numbers": "0123456789",
+    "geometry": "间距与动效",
+    "spacing": "间距",
+    "radius": "圆角",
+    "motion": "动效",
+    "weather": "气象色标",
+    "weatherDescription": "切换主题时，数据颜色保持一致。",
+    "wind": "风速 · m/s",
+    "temp": "气温 · °C",
+    "rain": "降水 · mm/h",
+    "wave": "波高 · m"
+  }
+}

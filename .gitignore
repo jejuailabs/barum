@@ -1,0 +1,19 @@
+node_modules/
+.next/
+out/
+coverage/
+test-results/
+playwright-report/
+.env*
+!.env.example
+.vercel/
+.firebase/
+*-debug.log*
+*.tsbuildinfo
+.tools/
+public/fonts/
+*firebase-adminsdk*.json
+firebase_sdk.txt
+새 텍스트 문서.txt
+
+.vercel

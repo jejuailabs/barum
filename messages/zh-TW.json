@@ -1,0 +1,55 @@
+{
+  "app": {
+    "name": "Barum",
+    "description": "了解濟州海域的海洋與氣象平台"
+  },
+  "theme": {
+    "label": "顯示主題",
+    "system": "跟隨系統",
+    "dark": "深色",
+    "light": "淺色"
+  },
+  "language": {
+    "label": "語言",
+    "ko": "한국어",
+    "en": "English",
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文",
+    "ja": "日本語"
+  },
+  "foundation": {
+    "eyebrow": "從濟州出發，讀懂海洋",
+    "title": "讀懂海洋，\n從這裡開始。",
+    "description": "在同一畫面了解濟州的天氣與海洋。以五種語言、兩種主題建構 Barum。",
+    "phase": "Phase 0 · 基礎",
+    "gallery": "查看設計變數",
+    "home": "返回基礎頁面",
+    "statusTitle": "從堅實的基礎開始",
+    "statusLanguage": "五種語言，一致體驗",
+    "statusTheme": "白天黑夜，清晰易讀",
+    "statusData": "區分地點資料與網格資料",
+    "notice": "這是基礎預覽頁面，尚未連接即時氣象資料。",
+    "footer": "了解濟州海洋的新方式",
+    "skip": "跳至主要內容"
+  },
+  "gallery": {
+    "title": "Barum 的設計語言",
+    "description": "介面、色彩、字體與動效。切換主題，查看各項設計變數。",
+    "colors": "色彩與介面",
+    "colorsDescription": "所有顏色均使用語意化變數。",
+    "typography": "字體層級",
+    "typographyDescription": "讓每種語言和數字都易於閱讀",
+    "sample": "濟州的海洋",
+    "numbers": "0123456789",
+    "geometry": "間距與動效",
+    "spacing": "間距",
+    "radius": "圓角",
+    "motion": "動效",
+    "weather": "氣象色標",
+    "weatherDescription": "切換主題時，資料顏色保持一致。",
+    "wind": "風速 · m/s",
+    "temp": "氣溫 · °C",
+    "rain": "降水 · mm/h",
+    "wave": "波高 · m"
+  }
+}
