@@ -51,5 +51,348 @@
     "temp": "Temperature · °C",
     "rain": "Rain · mm/h",
     "wave": "Waves · m"
+  },
+  "product": {
+    "mapLabel": "Interactive Jeju map",
+    "mapLoading": "Loading map",
+    "search": "Search places",
+    "locate": "Go to my location",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "aewol": "Jeju Aewol",
+    "live": "Live",
+    "resizeSheet": "Resize detail panel",
+    "skip": "Skip to content",
+    "openDetail": "Open Aewol details",
+    "mockFlag": "Phase 1 UI mock",
+    "weatherLoading": "Loading live weather",
+    "liveWeather": "Live point weather",
+    "locationUnavailable": "Location is unavailable on this device.",
+    "locationUpdated": "Moved to your current location.",
+    "locationDenied": "Check your location permission.",
+    "searchNotFound": "That Jeju place is not supported yet.",
+    "searchMoved": "Moved to {place}."
+  },
+  "nav": {
+    "label": "Main navigation",
+    "tide": "Tides",
+    "cctv": "CCTV",
+    "home": "Barum",
+    "travel": "Travel",
+    "more": "More"
+  },
+  "layers": {
+    "label": "Map layers",
+    "wind": "Wind",
+    "rain": "Rain",
+    "temp": "Temp",
+    "wave": "Waves",
+    "tide": "Tides"
+  },
+  "timeline": {
+    "label": "Forecast time",
+    "play": "Play forecast",
+    "pause": "Pause forecast",
+    "now": "Now",
+    "oneHour": "1h",
+    "threeHours": "3h",
+    "tonight": "Tonight",
+    "tomorrow": "Tomorrow",
+    "sevenDays": "7d",
+    "fifteenDays": "15d",
+    "forecastHour": "+{hour}h",
+    "gridReference": "+{hour}h · run {time} KST"
+  },
+  "common": {
+    "more": "More",
+    "back": "Go back"
+  },
+  "tideLive": {
+    "phase": {
+      "rising": "The tide is rising now.",
+      "falling": "The tide is falling now.",
+      "nearHigh": "Water is high near high tide.",
+      "nearLow": "Water is low near low tide."
+    },
+    "eventCountdown": "{minutes} min to {event}",
+    "noNextEvent": "Checking the next tide",
+    "nextEvent": "{minutes} minutes remain until {event}.",
+    "cycleNatural": "Today is tide {value} — {plain}",
+    "plainSpring": "Currents become especially strong.",
+    "plainNeap": "Water movement is relatively small.",
+    "plainNormal": "Currents are moderately active today.",
+    "offline": "Offline · saved forecast"
+  },
+  "glossary": {
+    "mulddae": "Tide number",
+    "mulddaeDescription": "A 1–15 scale for tidal movement driven by the moon.",
+    "spring": "Spring tide",
+    "springDescription": "The period with the largest tidal range.",
+    "neap": "Neap tide",
+    "neapDescription": "The period with the least tidal movement."
+  },
+  "errors": {
+    "fallback": "KMA data was unavailable, so a fallback forecast is in use.",
+    "marineUnavailable": "Marine forecast is temporarily unavailable.",
+    "weatherUnavailable": "Weather data is temporarily unavailable.",
+    "invalidCoordinates": "Valid coordinates are required.",
+    "invalidForecastRange": "A valid forecast range is required.",
+    "tideModelFallback": "A reference ocean model is being used instead of official tide data.",
+    "invalidDate": "A valid date is required.",
+    "tideUnavailable": "Tide data is temporarily unavailable.",
+    "offlineTide": "Saved tide data is shown while offline.",
+    "cctvNotFound": "CCTV was not found.",
+    "invalidGridRequest": "A valid grid request is required."
+  },
+  "places": {
+    "aewol": "Jeju Aewol",
+    "aewolAddress": "Aewol-eup, Jeju-si, Jeju",
+    "hongKong": "Hong Kong",
+    "shanghai": "Shanghai",
+    "taipei": "Taipei",
+    "seoul": "Seoul",
+    "pyongyang": "Pyongyang",
+    "tokyo": "Tokyo",
+    "sapporo": "Sapporo"
+  },
+  "sources": {
+    "label": "Sources and reference time",
+    "weather": "KMA nowcast mock",
+    "marine": "Marine observation mock",
+    "tide": "Tide forecast mock",
+    "kmaUltra": "KMA ultra-short nowcast",
+    "openMeteo": "Open-Meteo forecast",
+    "openMeteoMarine": "Open-Meteo marine forecast",
+    "khoaTide": "KHOA tide prediction",
+    "openMeteoTide": "Reference sea-level model",
+    "gridPreview": "Example field for grid renderer validation",
+    "gfsGrid": "NOAA GFS 0.25° forecast",
+    "mockNotice": "Fixed data for UI review; not a live observation.",
+    "liveNotice": "Live forecast data may differ from conditions on site.",
+    "ecmwfGrid": "ECMWF IFS 0.25° forecast",
+    "iconGrid": "DWD ICON global forecast",
+    "gfsPreview": "GFS renderer preview",
+    "ecmwfPreview": "ECMWF renderer preview",
+    "iconPreview": "ICON renderer preview"
+  },
+  "confidence": {
+    "high": "High confidence",
+    "medium": "Medium confidence",
+    "diverging": "Sources differ"
+  },
+  "conditions": {
+    "clear": "Clear",
+    "partly": "Partly cloudy",
+    "cloudy": "Cloudy",
+    "rain": "Rain",
+    "snow": "Snow",
+    "shower": "Showers",
+    "fog": "Fog",
+    "thunder": "Thunderstorm"
+  },
+  "weather": {
+    "feels": "Feels {value}°",
+    "summary": "Moderate wind and steady waves right now.",
+    "hourly": "Hourly forecast",
+    "daily": "Daily forecast",
+    "range": "{min}° / {max}°"
+  },
+  "metrics": {
+    "wind": "Westerly",
+    "wave": "Waves",
+    "rain": "Rain",
+    "seaTemp": "Sea temp",
+    "now": "Now"
+  },
+  "units": {
+    "windValue": "{value} m/s",
+    "meterValue": "{value} m",
+    "percentValue": "{value}%",
+    "degreeValue": "{value}°"
+  },
+  "activities": {
+    "surf": "Surf",
+    "fishing": "Fishing",
+    "drive": "Drive",
+    "cafe": "Cafe"
+  },
+  "advice": {
+    "title": "Today's advice",
+    "surfNormal": "Fair",
+    "surfReason": "Calm morning, waves build this afternoon.",
+    "fishingGood": "Best afternoon",
+    "fishingReason": "The current improves later today."
+  },
+  "tabs": {
+    "label": "Spot details",
+    "current": "Now",
+    "hourly": "Hourly",
+    "weekly": "Weekly",
+    "cctv": "CCTV"
+  },
+  "spot": {
+    "sheetLabel": "Aewol spot details",
+    "favorite": "Add to favorites"
+  },
+  "safety": {
+    "title": "Check your safe return time",
+    "description": "Return from coastal rocks by 12:51.",
+    "returnBy": "Return by {time} · {minutes} min left",
+    "disclaimer": "Reference only; actual conditions may differ. Wear a life jacket and check weather and marine warnings. Call Coast Guard 122 in an emergency.",
+    "call": "Coast Guard 122"
+  },
+  "tide": {
+    "pageTitle": "Today's tides",
+    "pageSubtitle": "Based on the nearest station to Aewol",
+    "today": "Today's tide ({station})",
+    "untilHigh": "High tide in 1h 22m",
+    "tableCaption": "Today's high and low tides",
+    "event": "Event",
+    "time": "Time",
+    "level": "Level",
+    "high": "High",
+    "low": "Low",
+    "cycle": "Tide",
+    "cycleValue": "Cycle {value}",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "moonrise": "Moonrise",
+    "risingTitle": "The water is rising now.",
+    "risingDescription": "High tide is in 1h 22m; the next low is at 13:51.",
+    "cycleDescription": "Today is cycle 8, with a fairly strong current.",
+    "week": "7-day tides",
+    "beginnerMode": "Simple mode",
+    "advancedMode": "Detailed mode",
+    "beginnerSummary": "Moderate current",
+    "day": "Sep {day}"
+  },
+  "cctv": {
+    "previewLabel": "Hyeopjae beach CCTV preview",
+    "preview": "{place} CCTV preview",
+    "live": "LIVE CCTV",
+    "place": "Hyeopjae Beach",
+    "expand": "Expand CCTV",
+    "play": "Play CCTV",
+    "stop": "Stop CCTV",
+    "source": "Barum × Jeju Province · mock",
+    "pageTitle": "Jeju sea CCTV",
+    "pageSubtitle": "See the coast with current conditions",
+    "detailSubtitle": "View video, weather and tides together",
+    "nearby": "Jeju CCTV",
+    "distanceSort": "Distance",
+    "available": "Online",
+    "loading": "Loading CCTV list",
+    "list": "List",
+    "map": "Map",
+    "mapLabel": "Jeju CCTV location map",
+    "openDetail": "Open details",
+    "openProvider": "Open provider page",
+    "slow": "The connection is slow. Please wait.",
+    "failed": "The video cannot be played.",
+    "provider": "Jeju Special Self-Governing Province",
+    "attribution": "Source: Jeju Special Self-Governing Province",
+    "legal": "Only distant-view CCTV with verified redistribution rights is played. Check local safety conditions directly.",
+    "status": {
+      "online": "Online",
+      "degraded": "Checking",
+      "offline": "Offline"
+    },
+    "registry": {
+      "hyeopjae": "Hyeopjae Beach",
+      "gwakji": "Gwakji Beach",
+      "handam": "Handam Coast",
+      "hallim-port": "Hallim Port",
+      "aewol-port": "Aewol Port",
+      "iho": "Iho Tewoo Beach",
+      "hamdeok": "Hamdeok Beach",
+      "woljeong": "Woljeongri Beach",
+      "seongsan": "Seongsan Port",
+      "jungmun": "Jungmun Beach"
+    },
+    "places": {
+      "hyeopjae": "Hyeopjae Beach",
+      "gwakji": "Gwakji Beach",
+      "handam": "Handam Coast",
+      "hallim": "Hallim Port"
+    }
+  },
+  "recommend": {
+    "gwakji": "Gwakji Beach",
+    "gwakjiDescription": "Emerald water and mellow waves",
+    "gwakjiLocation": "Aewol, Jeju",
+    "dodu": "Dodu Rainbow Coast",
+    "doduDescription": "A classic Jeju sunset drive",
+    "doduLocation": "Dodu, Jeju",
+    "hallim": "Hallim Port",
+    "hallimDescription": "An easy shore fishing spot for beginners",
+    "hallimLocation": "Hallim, Jeju",
+    "waveOne": "1.0 m",
+    "moderate": "Moderate",
+    "temp23": "23°",
+    "good": "Good",
+    "light": "Light",
+    "temp22": "22°",
+    "highTime": "18:20",
+    "fair": "Fair",
+    "temp21": "21°"
+  },
+  "travel": {
+    "title": "Where to today?",
+    "subtitle": "Recommendations based on weather and sea conditions",
+    "categories": "Travel categories",
+    "recommendations": "Today's recommended places",
+    "sunset": "Sunset",
+    "fishing": "Fishing",
+    "favorite": "Toggle favorite",
+    "cta": {
+      "surf": "Surf pick",
+      "fishing": "View CCTV",
+      "drive": "Drive pick",
+      "cafe": "View cafe"
+    },
+    "cctvTitle": "Connect to live CCTV",
+    "cctvDescription": "See the Jeju coast right now",
+    "beachCheck": "Beach",
+    "waveCheck": "Wave height",
+    "weatherCheck": "Local weather",
+    "openCctv": "Open CCTV",
+    "courses": "Today's routes",
+    "halfDay": "Half day",
+    "sunsetSpot": "Sunset spot",
+    "rainOkay": "Rain friendly",
+    "course1": "Aewol coast walk",
+    "course2": "West coast sunset drive",
+    "course3": "Indoor Jeju day"
+  },
+  "more": {
+    "title": "More",
+    "subtitle": "Tune the sea information for you",
+    "guest": "Sign in for custom alerts",
+    "guestDescription": "Manage saved places and tide alerts together.",
+    "menu": "More menu",
+    "myInfo": "My profile",
+    "alerts": "Alert settings",
+    "settings": "Language · units · theme",
+    "glossary": "Tide glossary",
+    "safety": "Safety guide",
+    "sources": "Data sources and accuracy",
+    "notice": "Notices · contact",
+    "privacy": "Terms · privacy",
+    "phaseSix": "Available in Phase 6"
+  },
+  "models": {
+    "label": "Forecast model",
+    "ecmwf": {
+      "short": "ECMWF",
+      "region": "Europe"
+    },
+    "gfs": {
+      "short": "GFS",
+      "region": "United States"
+    },
+    "icon": {
+      "short": "ICON",
+      "region": "Germany"
+    }
   }
 }

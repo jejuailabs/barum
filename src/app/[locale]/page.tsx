@@ -1,13 +1,10 @@
 import {setRequestLocale} from 'next-intl/server';
-import {hasLocale} from 'next-intl';
-import {notFound} from 'next/navigation';
-import {routing} from '@/i18n/routing';
-import {FoundationPage} from '@/components/FoundationPage';
+import {MapHome} from '@/components/product/Screens';
+import {getPhaseOneData} from '@/lib/sources/mock';
+import type {Locale} from '@/i18n/routing';
 
-/** Phase 0 landing page; Phase 1 replaces this with the map home. */
-export default async function Home({params}: {params: Promise<{locale: string}>}) {
+export default async function Home({params}: {params: Promise<{locale: Locale}>}) {
   const {locale} = await params;
-  if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
-  return <FoundationPage />;
+  return <MapHome data={getPhaseOneData()}/>;
 }

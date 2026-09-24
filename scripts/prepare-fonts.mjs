@@ -21,4 +21,9 @@ for (const [locale, source, license] of fonts) {
   await writeFile(`${output}/font.css`, css);
   await copyFile(license, `${output}/LICENSE.txt`);
 }
-console.log('Self-hosted unicode-subset fonts prepared for five locales (no preload).');
+const maplibreOutput = 'public/maplibre';
+await mkdir(maplibreOutput, {recursive: true});
+for (const file of ['maplibre-gl-worker.mjs', 'maplibre-gl-shared.mjs']) {
+  await copyFile(`node_modules/maplibre-gl/dist/${file}`, `${maplibreOutput}/${file}`);
+}
+console.log('Self-hosted unicode-subset fonts and MapLibre worker assets prepared.');

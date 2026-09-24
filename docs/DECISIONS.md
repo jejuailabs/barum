@@ -25,3 +25,15 @@
 - CCTV 스트림 사용 허가 및 실제 공급 경로: Phase 4.
 - Firebase Functions/Cloud Run/Storage가 요금제 상향을 요구하면 해당 시점에 사용자 확인. 지금 결제나 요금제 변경은 하지 않았다.
 - 배포 도메인이 확정되면 NEXT_PUBLIC_SITE_URL을 최종 canonical 도메인으로 변경한다.
+
+## Phase 1 결정 — UI 골격
+
+2026-09-23. Sol 구현.
+
+1. **지도 베이스**: MapLibre GL JS 6.10.0과 무료·키 불필요 OpenFreeMap 기본 스타일을 사용한다. OpenFreeMap 및 OpenStreetMap 저작권 표기를 지도에 항상 노출한다. Windy에서는 지도 중심 정보 구조와 조작 패턴만 참고하고 코드·타일·아이콘·색상·로고는 사용하지 않는다.
+2. **MapLibre 워커**: Next.js에서 `maplibre-gl-worker.mjs`와 상대 import 대상인 `maplibre-gl-shared.mjs`를 빌드 전에 `public/maplibre/`로 복사한다. 생성물은 Git에서 제외한다. 5.x의 운영 취약점을 피하기 위해 6.10.0으로 올렸고 운영 의존성 audit 0건을 확인했다.
+3. **데이터 경계**: `src/types/domain.ts`의 `NormalizedPoint`, `NormalizedMarine`, `NormalizedTide`, `SourceMeta`, `AdviceResult`, 오류·부분 결측 계약을 UI의 유일한 입력으로 쓴다. 고정 목업은 `src/lib/sources/mock.ts` 안에만 둔다. 날씨·해양·물때 출처와 기준 시각은 각각 유지한다.
+4. **표현 범위**: 지도 위 바람 선과 모든 수치는 Phase 1 UI 목업으로 명시한다. 실제 격자/파티클은 Phase 5 전까지 만들지 않으며 지점 API 반복 호출로 대체하지 않는다. CCTV 영상과 여행 이미지는 지금 단계에서 CSS 장면 목업이다.
+5. **반응형**: 모바일은 드래그 가능한 28/55/92% 바텀시트, 태블릿은 우측 플로팅 패널, 데스크톱은 좌측 고정 상세 패널을 사용한다. 모든 형태에서 지도 포인터 이벤트를 유지한다.
+6. **안전·출처**: 고립 위험 안내에는 면책 문구와 해양경찰 `tel:122` 동선을 함께 제공한다. 목업 카드에도 출처·기준 시각·신뢰도·목업 상태를 노출한다.
+7. **검증 증거**: 주요 5화면의 다크·라이트 데스크톱 이미지 10장은 `docs/evidence/phase-1/`에 보관한다. 동일 화면을 모바일에서도 axe로 검사하며, 지도 로딩 완료 뒤 캡처한다.

@@ -48,6 +48,11 @@ for (const {text} of await sourceFiles()) {
 // Only these keys are intentionally reached through typed iteration in the gallery/switcher.
 for (const locale of locales) used.add(`language.${locale}`);
 for (const layer of ['wind', 'temp', 'rain', 'wave']) used.add(`gallery.${layer}`);
+// Product screens intentionally resolve adapter-provided and iterated keys at runtime.
+const dynamicNamespaces = ['product', 'nav', 'layers', 'timeline', 'common', 'places', 'sources',
+  'confidence', 'conditions', 'weather', 'metrics', 'units', 'activities', 'advice', 'tabs',
+  'spot', 'safety', 'tide', 'tideLive', 'glossary', 'cctv', 'recommend', 'travel', 'more', 'models', 'errors'];
+for (const key of Object.keys(reference)) if (dynamicNamespaces.some(namespace => key.startsWith(`${namespace}.`))) used.add(key);
 for (const key of Object.keys(reference)) if (!used.has(key)) errors.push(`Unused key: ${key}`);
 for (const key of used) if (!(key in reference)) errors.push(`Unknown key: ${key}`);
 if (errors.length) { console.error(errors.join('\n')); process.exit(1); }

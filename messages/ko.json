@@ -51,5 +51,348 @@
     "temp": "기온 · °C",
     "rain": "강수 · mm/h",
     "wave": "파고 · m"
+  },
+  "product": {
+    "mapLabel": "제주 인터랙티브 지도",
+    "mapLoading": "지도를 불러오는 중",
+    "search": "지역 검색",
+    "locate": "현재 위치로 이동",
+    "zoomIn": "지도 확대",
+    "zoomOut": "지도 축소",
+    "aewol": "제주 애월",
+    "live": "실시간",
+    "resizeSheet": "상세 패널 크기 조절",
+    "skip": "본문 바로가기",
+    "openDetail": "애월 상세 보기",
+    "mockFlag": "Phase 1 UI 목업",
+    "weatherLoading": "실시간 날씨 불러오는 중",
+    "liveWeather": "실시간 지점 날씨",
+    "locationUnavailable": "이 기기에서는 위치를 사용할 수 없습니다.",
+    "locationUpdated": "현재 위치로 이동했습니다.",
+    "locationDenied": "위치 권한을 확인해 주세요.",
+    "searchNotFound": "지원하는 제주 지역을 찾지 못했습니다.",
+    "searchMoved": "{place}(으)로 이동했습니다."
+  },
+  "nav": {
+    "label": "주요 메뉴",
+    "tide": "물때",
+    "cctv": "CCTV",
+    "home": "바름닷컴",
+    "travel": "여행",
+    "more": "더보기"
+  },
+  "layers": {
+    "label": "지도 레이어",
+    "wind": "바람",
+    "rain": "강수",
+    "temp": "기온",
+    "wave": "파도",
+    "tide": "물때"
+  },
+  "timeline": {
+    "label": "예보 시각",
+    "play": "예보 재생",
+    "pause": "예보 일시정지",
+    "now": "지금",
+    "oneHour": "1h",
+    "threeHours": "3h",
+    "tonight": "오늘밤",
+    "tomorrow": "내일",
+    "sevenDays": "7일",
+    "fifteenDays": "15일",
+    "forecastHour": "+{hour}시간",
+    "gridReference": "+{hour}시간 · 모델 {time} KST"
+  },
+  "common": {
+    "more": "더보기",
+    "back": "뒤로가기"
+  },
+  "tideLive": {
+    "phase": {
+      "rising": "지금은 물이 차오르는 중이에요.",
+      "falling": "지금은 물이 빠지는 중이에요.",
+      "nearHigh": "만조에 가까워 물이 높아요.",
+      "nearLow": "간조에 가까워 물이 낮아요."
+    },
+    "eventCountdown": "{event}까지 {minutes}분",
+    "noNextEvent": "다음 조석 확인 중",
+    "nextEvent": "다음 {event}까지 {minutes}분 남았어요.",
+    "cycleNatural": "오늘은 {value}물 — {plain}",
+    "plainSpring": "물살이 매우 세지는 시기예요.",
+    "plainNeap": "물의 움직임이 비교적 작은 시기예요.",
+    "plainNormal": "물살이 제법 흐르는 날이에요.",
+    "offline": "오프라인 · 저장된 예측값 기준"
+  },
+  "glossary": {
+    "mulddae": "몇물",
+    "mulddaeDescription": "달의 영향에 따른 물의 흐름을 1~15 숫자로 나타냅니다.",
+    "spring": "사리",
+    "springDescription": "물이 가장 많이 들고 나는 시기입니다.",
+    "neap": "조금",
+    "neapDescription": "물의 움직임이 가장 작은 시기입니다."
+  },
+  "errors": {
+    "fallback": "기상청 자료를 불러오지 못해 대체 예보를 사용합니다.",
+    "marineUnavailable": "해양 예보를 잠시 불러올 수 없습니다.",
+    "weatherUnavailable": "날씨 정보를 잠시 불러올 수 없습니다.",
+    "invalidCoordinates": "올바른 좌표가 필요합니다.",
+    "invalidForecastRange": "올바른 예보 범위가 필요합니다.",
+    "tideModelFallback": "공식 조석 자료 대신 참고용 수치모델을 사용합니다.",
+    "invalidDate": "올바른 날짜가 필요합니다.",
+    "tideUnavailable": "물때 정보를 잠시 불러올 수 없습니다.",
+    "offlineTide": "네트워크가 없어 저장된 물때를 표시합니다.",
+    "cctvNotFound": "CCTV를 찾을 수 없습니다.",
+    "invalidGridRequest": "올바른 격자 요청이 필요합니다."
+  },
+  "places": {
+    "aewol": "제주 애월",
+    "aewolAddress": "제주특별자치도 제주시 애월읍",
+    "hongKong": "홍콩",
+    "shanghai": "상하이",
+    "taipei": "타이베이",
+    "seoul": "서울",
+    "pyongyang": "평양",
+    "tokyo": "도쿄",
+    "sapporo": "삿포로"
+  },
+  "sources": {
+    "label": "데이터 출처와 기준 시각",
+    "weather": "기상청 초단기실황 목업",
+    "marine": "해양 관측 목업",
+    "tide": "조석 예측 목업",
+    "kmaUltra": "기상청 초단기실황",
+    "openMeteo": "Open-Meteo 예보",
+    "openMeteoMarine": "Open-Meteo 해양예보",
+    "khoaTide": "국립해양조사원 조석예보",
+    "openMeteoTide": "참고용 해수면 수치모델",
+    "gridPreview": "격자 렌더러 검증용 예시 필드",
+    "gfsGrid": "NOAA GFS 0.25° 예보",
+    "mockNotice": "화면 검증용 고정 데이터이며 실제 관측값이 아닙니다.",
+    "liveNotice": "실시간 예보 데이터이며 현장 상황과 다를 수 있습니다.",
+    "ecmwfGrid": "ECMWF IFS 0.25° 예보",
+    "iconGrid": "DWD ICON 전지구 예보",
+    "gfsPreview": "GFS 렌더러 미리보기",
+    "ecmwfPreview": "ECMWF 렌더러 미리보기",
+    "iconPreview": "ICON 렌더러 미리보기"
+  },
+  "confidence": {
+    "high": "신뢰 높음",
+    "medium": "신뢰 보통",
+    "diverging": "자료 갈림"
+  },
+  "conditions": {
+    "clear": "맑음",
+    "partly": "구름 조금",
+    "cloudy": "흐림",
+    "rain": "비",
+    "snow": "눈",
+    "shower": "소나기",
+    "fog": "안개",
+    "thunder": "천둥번개"
+  },
+  "weather": {
+    "feels": "체감 {value}°",
+    "summary": "바람이 적당하고 파도가 안정적이에요.",
+    "hourly": "시간별 예보",
+    "daily": "주간 예보",
+    "range": "{min}° / {max}°"
+  },
+  "metrics": {
+    "wind": "서풍",
+    "wave": "파고",
+    "rain": "강수",
+    "seaTemp": "수온",
+    "now": "지금"
+  },
+  "units": {
+    "windValue": "{value} m/s",
+    "meterValue": "{value} m",
+    "percentValue": "{value}%",
+    "degreeValue": "{value}°"
+  },
+  "activities": {
+    "surf": "서핑",
+    "fishing": "낚시",
+    "drive": "드라이브",
+    "cafe": "카페"
+  },
+  "advice": {
+    "title": "오늘의 한마디",
+    "surfNormal": "보통",
+    "surfReason": "오전엔 잔잔, 오후에 파도 살아나요.",
+    "fishingGood": "오후 추천",
+    "fishingReason": "오후부터 조류가 좋아집니다."
+  },
+  "tabs": {
+    "label": "지역 상세 보기",
+    "current": "현재",
+    "hourly": "시간별",
+    "weekly": "주간",
+    "cctv": "CCTV"
+  },
+  "spot": {
+    "sheetLabel": "애월 지역 상세",
+    "favorite": "즐겨찾기에 추가"
+  },
+  "safety": {
+    "title": "간조 전 해안 안전 시간 확인",
+    "description": "갯바위 진입 시 12:51까지 복귀를 권장합니다.",
+    "returnBy": "복귀 권장 {time} · {minutes}분 남음",
+    "disclaimer": "본 정보는 참고용이며 실제 현장 상황과 다를 수 있습니다. 반드시 구명조끼를 착용하고 기상·해양 특보를 확인하세요. 긴급 시 해양경찰 122.",
+    "call": "해양경찰 122"
+  },
+  "tide": {
+    "pageTitle": "오늘의 물때",
+    "pageSubtitle": "애월과 가까운 관측소 기준",
+    "today": "오늘의 조위 ({station})",
+    "untilHigh": "만조까지 1시간 22분",
+    "tableCaption": "오늘의 만조와 간조 시각",
+    "event": "구분",
+    "time": "시각",
+    "level": "조위",
+    "high": "만조",
+    "low": "간조",
+    "cycle": "물때",
+    "cycleValue": "{value}물",
+    "sunrise": "일출",
+    "sunset": "일몰",
+    "moonrise": "월출",
+    "risingTitle": "지금은 물이 차오르는 중이에요.",
+    "risingDescription": "만조까지 1시간 22분 남았고, 다음 간조는 13:51이에요.",
+    "cycleDescription": "오늘은 8물 — 물살이 제법 세게 흐르는 날입니다.",
+    "week": "7일 물때표",
+    "beginnerMode": "초보 모드",
+    "advancedMode": "상세 모드",
+    "beginnerSummary": "물살이 보통이에요",
+    "day": "9월 {day}일"
+  },
+  "cctv": {
+    "previewLabel": "협재 해변 CCTV 미리보기",
+    "preview": "{place} CCTV 미리보기",
+    "live": "LIVE CCTV",
+    "place": "협재 해변 해수욕장",
+    "expand": "CCTV 크게 보기",
+    "play": "CCTV 재생",
+    "stop": "CCTV 정지",
+    "source": "바름닷컴 × 제주특별자치도 · 목업",
+    "pageTitle": "제주 바다 CCTV",
+    "pageSubtitle": "현장 화면과 날씨를 함께 확인하세요",
+    "detailSubtitle": "영상과 날씨·물때를 함께 확인하세요",
+    "nearby": "제주 CCTV",
+    "distanceSort": "거리순",
+    "available": "정상",
+    "loading": "CCTV 목록을 불러오는 중",
+    "list": "목록",
+    "map": "지도",
+    "mapLabel": "제주 CCTV 위치 지도",
+    "openDetail": "상세 보기",
+    "openProvider": "제공기관 페이지로 이동",
+    "slow": "연결이 느려요. 잠시만 기다려 주세요.",
+    "failed": "영상을 재생할 수 없습니다.",
+    "provider": "제주특별자치도",
+    "attribution": "출처: 제주특별자치도",
+    "legal": "영상 재배포 권한이 확인된 원경 CCTV만 재생합니다. 현장 안전은 직접 확인하세요.",
+    "status": {
+      "online": "정상",
+      "degraded": "점검 중",
+      "offline": "오프라인"
+    },
+    "registry": {
+      "hyeopjae": "협재 해변",
+      "gwakji": "곽지 해변",
+      "handam": "한담 해안",
+      "hallim-port": "한림항",
+      "aewol-port": "애월항",
+      "iho": "이호테우 해변",
+      "hamdeok": "함덕 해변",
+      "woljeong": "월정리 해변",
+      "seongsan": "성산항",
+      "jungmun": "중문 해변"
+    },
+    "places": {
+      "hyeopjae": "협재 해변",
+      "gwakji": "곽지 해변",
+      "handam": "한담 해안",
+      "hallim": "한림항"
+    }
+  },
+  "recommend": {
+    "gwakji": "곽지 해변",
+    "gwakjiDescription": "에메랄드빛 바다와 부드러운 파도",
+    "gwakjiLocation": "제주시 애월읍",
+    "dodu": "도두 무지개해안",
+    "doduDescription": "노을이 아름다운 제주 대표 드라이브 코스",
+    "doduLocation": "제주시 도두동",
+    "hallim": "한림항",
+    "hallimDescription": "초보자도 즐기기 좋은 생활 낚시 명소",
+    "hallimLocation": "제주시 한림읍",
+    "waveOne": "1.0 m",
+    "moderate": "적당",
+    "temp23": "23°",
+    "good": "좋음",
+    "light": "약함",
+    "temp22": "22°",
+    "highTime": "18:20",
+    "fair": "무난",
+    "temp21": "21°"
+  },
+  "travel": {
+    "title": "오늘 어디 갈까?",
+    "subtitle": "날씨와 바다 상태를 기준으로 추천",
+    "categories": "여행 카테고리",
+    "recommendations": "오늘의 장소 추천",
+    "sunset": "노을",
+    "fishing": "낚시",
+    "favorite": "즐겨찾기 전환",
+    "cta": {
+      "surf": "서핑 추천",
+      "fishing": "CCTV 보기",
+      "drive": "드라이브 추천",
+      "cafe": "카페 보기"
+    },
+    "cctvTitle": "실시간 CCTV 연결",
+    "cctvDescription": "지금 이 시각, 제주 바다를 확인하세요",
+    "beachCheck": "해변 상황",
+    "waveCheck": "파도 높이",
+    "weatherCheck": "현장 날씨",
+    "openCctv": "CCTV 열기",
+    "courses": "오늘의 추천 코스",
+    "halfDay": "반나절 코스",
+    "sunsetSpot": "일몰 명소",
+    "rainOkay": "비 와도 OK",
+    "course1": "애월 바다 산책",
+    "course2": "서쪽 노을 드라이브",
+    "course3": "제주 실내 하루"
+  },
+  "more": {
+    "title": "더보기",
+    "subtitle": "나에게 맞는 바다 정보를 설정하세요",
+    "guest": "로그인하고 내 조건 알림 받기",
+    "guestDescription": "장소와 물때 알림을 한곳에서 관리합니다.",
+    "menu": "더보기 메뉴",
+    "myInfo": "내 정보",
+    "alerts": "알림 설정",
+    "settings": "언어 · 단위 · 테마",
+    "glossary": "물때 용어 사전",
+    "safety": "안전 가이드",
+    "sources": "데이터 출처 및 정확도 안내",
+    "notice": "공지사항 · 문의하기",
+    "privacy": "약관 · 개인정보처리방침",
+    "phaseSix": "Phase 6에서 제공"
+  },
+  "models": {
+    "label": "예보 모델",
+    "ecmwf": {
+      "short": "ECMWF",
+      "region": "유럽"
+    },
+    "gfs": {
+      "short": "GFS",
+      "region": "미국"
+    },
+    "icon": {
+      "short": "ICON",
+      "region": "독일"
+    }
   }
 }

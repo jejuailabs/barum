@@ -51,5 +51,348 @@
     "temp": "气温 · °C",
     "rain": "降水 · mm/h",
     "wave": "波高 · m"
+  },
+  "product": {
+    "mapLabel": "济州互动地图",
+    "mapLoading": "地图加载中",
+    "search": "搜索地区",
+    "locate": "前往当前位置",
+    "zoomIn": "放大地图",
+    "zoomOut": "缩小地图",
+    "aewol": "济州涯月",
+    "live": "实时",
+    "resizeSheet": "调整详情面板",
+    "skip": "跳到正文",
+    "openDetail": "查看涯月详情",
+    "mockFlag": "Phase 1 UI 模拟",
+    "weatherLoading": "正在加载实时天气",
+    "liveWeather": "实时地点天气",
+    "locationUnavailable": "此设备无法使用位置信息。",
+    "locationUpdated": "已移至当前位置。",
+    "locationDenied": "请检查位置权限。",
+    "searchNotFound": "暂不支持该济州地区。",
+    "searchMoved": "已移至{place}。"
+  },
+  "nav": {
+    "label": "主菜单",
+    "tide": "潮汐",
+    "cctv": "CCTV",
+    "home": "Barum",
+    "travel": "旅行",
+    "more": "更多"
+  },
+  "layers": {
+    "label": "地图图层",
+    "wind": "风",
+    "rain": "降水",
+    "temp": "气温",
+    "wave": "海浪",
+    "tide": "潮汐"
+  },
+  "timeline": {
+    "label": "预报时间",
+    "play": "播放预报",
+    "pause": "暂停预报",
+    "now": "现在",
+    "oneHour": "1小时",
+    "threeHours": "3小时",
+    "tonight": "今晚",
+    "tomorrow": "明天",
+    "sevenDays": "7天",
+    "fifteenDays": "15天",
+    "forecastHour": "+{hour}小时",
+    "gridReference": "+{hour}小时 · 模型 {time} KST"
+  },
+  "common": {
+    "more": "更多",
+    "back": "返回"
+  },
+  "tideLive": {
+    "phase": {
+      "rising": "现在海水正在上涨。",
+      "falling": "现在海水正在退去。",
+      "nearHigh": "接近高潮，水位较高。",
+      "nearLow": "接近低潮，水位较低。"
+    },
+    "eventCountdown": "距{event}{minutes}分钟",
+    "noNextEvent": "正在确认下一次潮汐",
+    "nextEvent": "距下一次{event}还有{minutes}分钟。",
+    "cycleNatural": "今天是{value}潮 — {plain}",
+    "plainSpring": "水流会变得非常强。",
+    "plainNeap": "水流变化相对较小。",
+    "plainNormal": "今天水流较为活跃。",
+    "offline": "离线 · 已保存预报"
+  },
+  "glossary": {
+    "mulddae": "潮数",
+    "mulddaeDescription": "用1至15表示月球影响下的潮流变化。",
+    "spring": "大潮",
+    "springDescription": "潮差最大的时期。",
+    "neap": "小潮",
+    "neapDescription": "潮水运动最小的时期。"
+  },
+  "errors": {
+    "fallback": "韩国气象厅数据不可用，现使用备用预报。",
+    "marineUnavailable": "暂时无法加载海洋预报。",
+    "weatherUnavailable": "暂时无法加载天气信息。",
+    "invalidCoordinates": "需要有效坐标。",
+    "invalidForecastRange": "需要有效的预报范围。",
+    "tideModelFallback": "正在使用参考海面模型替代官方潮汐数据。",
+    "invalidDate": "需要有效日期。",
+    "tideUnavailable": "暂时无法加载潮汐信息。",
+    "offlineTide": "离线时显示已保存的潮汐。",
+    "cctvNotFound": "找不到CCTV。",
+    "invalidGridRequest": "需要有效的网格请求。"
+  },
+  "places": {
+    "aewol": "济州涯月",
+    "aewolAddress": "济州特别自治道济州市涯月邑",
+    "hongKong": "香港",
+    "shanghai": "上海",
+    "taipei": "台北",
+    "seoul": "首尔",
+    "pyongyang": "平壤",
+    "tokyo": "东京",
+    "sapporo": "札幌"
+  },
+  "sources": {
+    "label": "数据来源和基准时间",
+    "weather": "韩国气象厅临近实况模拟",
+    "marine": "海洋观测模拟",
+    "tide": "潮汐预报模拟",
+    "kmaUltra": "韩国气象厅超短时实况",
+    "openMeteo": "Open-Meteo预报",
+    "openMeteoMarine": "Open-Meteo海洋预报",
+    "khoaTide": "韩国海洋调查院潮汐预报",
+    "openMeteoTide": "参考海面数值模型",
+    "gridPreview": "用于验证网格渲染器的示例场",
+    "gfsGrid": "NOAA GFS 0.25°预报",
+    "mockNotice": "仅用于界面审核的固定数据，并非实时观测。",
+    "liveNotice": "实时预报可能与现场状况不同。",
+    "ecmwfGrid": "ECMWF IFS 0.25°预报",
+    "iconGrid": "DWD ICON全球预报",
+    "gfsPreview": "GFS渲染预览",
+    "ecmwfPreview": "ECMWF渲染预览",
+    "iconPreview": "ICON渲染预览"
+  },
+  "confidence": {
+    "high": "可信度高",
+    "medium": "可信度中",
+    "diverging": "来源不一致"
+  },
+  "conditions": {
+    "clear": "晴",
+    "partly": "少云",
+    "cloudy": "多云",
+    "rain": "雨",
+    "snow": "雪",
+    "shower": "阵雨",
+    "fog": "雾",
+    "thunder": "雷雨"
+  },
+  "weather": {
+    "feels": "体感 {value}°",
+    "summary": "目前风力适中，海浪稳定。",
+    "hourly": "逐小时预报",
+    "daily": "每日预报",
+    "range": "{min}° / {max}°"
+  },
+  "metrics": {
+    "wind": "西风",
+    "wave": "浪高",
+    "rain": "降水",
+    "seaTemp": "水温",
+    "now": "现在"
+  },
+  "units": {
+    "windValue": "{value} m/s",
+    "meterValue": "{value} m",
+    "percentValue": "{value}%",
+    "degreeValue": "{value}°"
+  },
+  "activities": {
+    "surf": "冲浪",
+    "fishing": "钓鱼",
+    "drive": "自驾",
+    "cafe": "咖啡馆"
+  },
+  "advice": {
+    "title": "今日建议",
+    "surfNormal": "一般",
+    "surfReason": "上午平静，下午浪势增强。",
+    "fishingGood": "推荐下午",
+    "fishingReason": "下午水流条件转好。"
+  },
+  "tabs": {
+    "label": "地点详情",
+    "current": "现在",
+    "hourly": "逐小时",
+    "weekly": "每周",
+    "cctv": "CCTV"
+  },
+  "spot": {
+    "sheetLabel": "涯月地区详情",
+    "favorite": "添加收藏"
+  },
+  "safety": {
+    "title": "确认退潮前安全时间",
+    "description": "进入海边礁石时，建议在12:51前返回。",
+    "returnBy": "建议{time}前返回 · 剩余{minutes}分钟",
+    "disclaimer": "仅供参考，现场情况可能不同。请穿救生衣并确认气象和海洋警报，紧急时拨打海洋警察122。",
+    "call": "海洋警察 122"
+  },
+  "tide": {
+    "pageTitle": "今日潮汐",
+    "pageSubtitle": "以涯月附近观测站为准",
+    "today": "今日潮位（{station}）",
+    "untilHigh": "距高潮1小时22分",
+    "tableCaption": "今日高潮和低潮时间",
+    "event": "类型",
+    "time": "时间",
+    "level": "潮位",
+    "high": "高潮",
+    "low": "低潮",
+    "cycle": "潮次",
+    "cycleValue": "第{value}潮",
+    "sunrise": "日出",
+    "sunset": "日落",
+    "moonrise": "月出",
+    "risingTitle": "现在海水正在上涨。",
+    "risingDescription": "距高潮1小时22分，下次低潮为13:51。",
+    "cycleDescription": "今天是第8潮，水流较强。",
+    "week": "7日潮汐表",
+    "beginnerMode": "简易模式",
+    "advancedMode": "详细模式",
+    "beginnerSummary": "水流一般",
+    "day": "9月{day}日"
+  },
+  "cctv": {
+    "previewLabel": "挟才海滩CCTV预览",
+    "preview": "{place} CCTV预览",
+    "live": "实时 CCTV",
+    "place": "挟才海水浴场",
+    "expand": "放大CCTV",
+    "play": "播放CCTV",
+    "stop": "停止CCTV",
+    "source": "Barum × 济州特别自治道 · 模拟",
+    "pageTitle": "济州海边CCTV",
+    "pageSubtitle": "同时查看现场画面和天气",
+    "detailSubtitle": "同时查看视频、天气和潮汐",
+    "nearby": "济州CCTV",
+    "distanceSort": "按距离",
+    "available": "正常",
+    "loading": "正在加载CCTV列表",
+    "list": "列表",
+    "map": "地图",
+    "mapLabel": "济州CCTV位置地图",
+    "openDetail": "查看详情",
+    "openProvider": "前往提供机构页面",
+    "slow": "连接较慢，请稍候。",
+    "failed": "无法播放视频。",
+    "provider": "济州特别自治道",
+    "attribution": "来源：济州特别自治道",
+    "legal": "仅播放已确认再传播许可的远景CCTV。请自行确认现场安全状况。",
+    "status": {
+      "online": "正常",
+      "degraded": "检查中",
+      "offline": "离线"
+    },
+    "registry": {
+      "hyeopjae": "挟才海滩",
+      "gwakji": "郭支海滩",
+      "handam": "汉潭海岸",
+      "hallim-port": "翰林港",
+      "aewol-port": "涯月港",
+      "iho": "梨湖木筏海滩",
+      "hamdeok": "咸德海滩",
+      "woljeong": "月汀里海滩",
+      "seongsan": "城山港",
+      "jungmun": "中文海滩"
+    },
+    "places": {
+      "hyeopjae": "挟才海滩",
+      "gwakji": "郭支海滩",
+      "handam": "汉潭海岸",
+      "hallim": "翰林港"
+    }
+  },
+  "recommend": {
+    "gwakji": "郭支海滩",
+    "gwakjiDescription": "翡翠色海水与柔和海浪",
+    "gwakjiLocation": "济州市涯月邑",
+    "dodu": "道头彩虹海岸",
+    "doduDescription": "欣赏日落的济州经典自驾路线",
+    "doduLocation": "济州市道头洞",
+    "hallim": "翰林港",
+    "hallimDescription": "适合初学者的休闲钓鱼地点",
+    "hallimLocation": "济州市翰林邑",
+    "waveOne": "1.0 m",
+    "moderate": "适中",
+    "temp23": "23°",
+    "good": "良好",
+    "light": "微弱",
+    "temp22": "22°",
+    "highTime": "18:20",
+    "fair": "尚可",
+    "temp21": "21°"
+  },
+  "travel": {
+    "title": "今天去哪里？",
+    "subtitle": "根据天气和海况推荐",
+    "categories": "旅行分类",
+    "recommendations": "今日推荐地点",
+    "sunset": "日落",
+    "fishing": "钓鱼",
+    "favorite": "切换收藏",
+    "cta": {
+      "surf": "冲浪推荐",
+      "fishing": "查看CCTV",
+      "drive": "自驾推荐",
+      "cafe": "查看咖啡馆"
+    },
+    "cctvTitle": "连接实时CCTV",
+    "cctvDescription": "立即查看济州海边",
+    "beachCheck": "海滩状况",
+    "waveCheck": "浪高",
+    "weatherCheck": "现场天气",
+    "openCctv": "打开CCTV",
+    "courses": "今日推荐路线",
+    "halfDay": "半日路线",
+    "sunsetSpot": "日落名胜",
+    "rainOkay": "雨天也可",
+    "course1": "涯月海边散步",
+    "course2": "西部日落自驾",
+    "course3": "济州室内一日"
+  },
+  "more": {
+    "title": "更多",
+    "subtitle": "设置适合你的海洋信息",
+    "guest": "登录并接收个性提醒",
+    "guestDescription": "统一管理收藏地点和潮汐提醒。",
+    "menu": "更多菜单",
+    "myInfo": "我的信息",
+    "alerts": "提醒设置",
+    "settings": "语言 · 单位 · 主题",
+    "glossary": "潮汐词典",
+    "safety": "安全指南",
+    "sources": "数据来源与准确度",
+    "notice": "公告 · 咨询",
+    "privacy": "条款 · 隐私政策",
+    "phaseSix": "第6阶段提供"
+  },
+  "models": {
+    "label": "预报模型",
+    "ecmwf": {
+      "short": "ECMWF",
+      "region": "欧洲"
+    },
+    "gfs": {
+      "short": "GFS",
+      "region": "美国"
+    },
+    "icon": {
+      "short": "ICON",
+      "region": "德国"
+    }
   }
 }

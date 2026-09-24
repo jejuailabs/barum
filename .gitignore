@@ -9,9 +9,14 @@ playwright-report/
 .vercel/
 .firebase/
 *-debug.log*
+debug.log
 *.tsbuildinfo
 .tools/
+__pycache__/
+*.pyc
+data/grid/**/*.json
 public/fonts/
+public/maplibre/
 *firebase-adminsdk*.json
 firebase_sdk.txt
 새 텍스트 문서.txt

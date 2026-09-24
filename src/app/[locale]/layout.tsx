@@ -5,6 +5,7 @@ import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
 import {themeInitScript} from '@/lib/theme';
 import '../globals.css';
+import 'maplibre-gl/dist/maplibre-gl.css';
 
 /** Generate the five public locale roots at build time. */
 export function generateStaticParams() { return routing.locales.map(locale => ({locale})); }

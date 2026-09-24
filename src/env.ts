@@ -13,7 +13,9 @@ const schema = z.object({
   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: optional,
   NEXT_PUBLIC_USE_FIREBASE_EMULATORS: z.enum(['true', 'false']).default('true'),
   FIREBASE_SERVICE_ACCOUNT_JSON: optional,
-  FIREBASE_PROJECT_ID: optional
+  FIREBASE_PROJECT_ID: optional,
+  KMA_SERVICE_KEY: optional,
+  KHOA_SERVICE_KEY: optional
 });
 
 /** Validate only enabled Phase 0 services, without leaking secret values into errors. */

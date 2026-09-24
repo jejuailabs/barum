@@ -51,5 +51,348 @@
     "temp": "気温 · °C",
     "rain": "降水 · mm/h",
     "wave": "波高 · m"
+  },
+  "product": {
+    "mapLabel": "済州インタラクティブ地図",
+    "mapLoading": "地図を読み込み中",
+    "search": "地域を検索",
+    "locate": "現在地へ移動",
+    "zoomIn": "地図を拡大",
+    "zoomOut": "地図を縮小",
+    "aewol": "済州 涯月",
+    "live": "リアルタイム",
+    "resizeSheet": "詳細パネルを調整",
+    "skip": "本文へ移動",
+    "openDetail": "涯月の詳細を見る",
+    "mockFlag": "Phase 1 UIモック",
+    "weatherLoading": "リアルタイム天気を読み込み中",
+    "liveWeather": "リアルタイム地点天気",
+    "locationUnavailable": "この端末では位置情報を利用できません。",
+    "locationUpdated": "現在地へ移動しました。",
+    "locationDenied": "位置情報の権限を確認してください。",
+    "searchNotFound": "対応する済州の地域が見つかりません。",
+    "searchMoved": "{place}へ移動しました。"
+  },
+  "nav": {
+    "label": "メインメニュー",
+    "tide": "潮汐",
+    "cctv": "CCTV",
+    "home": "Barum",
+    "travel": "旅行",
+    "more": "その他"
+  },
+  "layers": {
+    "label": "地図レイヤー",
+    "wind": "風",
+    "rain": "雨",
+    "temp": "気温",
+    "wave": "波",
+    "tide": "潮汐"
+  },
+  "timeline": {
+    "label": "予報時刻",
+    "play": "予報を再生",
+    "pause": "予報を一時停止",
+    "now": "現在",
+    "oneHour": "1時間",
+    "threeHours": "3時間",
+    "tonight": "今夜",
+    "tomorrow": "明日",
+    "sevenDays": "7日",
+    "fifteenDays": "15日",
+    "forecastHour": "+{hour}時間",
+    "gridReference": "+{hour}時間 · モデル {time} KST"
+  },
+  "common": {
+    "more": "もっと見る",
+    "back": "戻る"
+  },
+  "tideLive": {
+    "phase": {
+      "rising": "現在、潮が満ちています。",
+      "falling": "現在、潮が引いています。",
+      "nearHigh": "満潮に近く水位が高いです。",
+      "nearLow": "干潮に近く水位が低いです。"
+    },
+    "eventCountdown": "{event}まで{minutes}分",
+    "noNextEvent": "次の潮汐を確認中",
+    "nextEvent": "次の{event}まで{minutes}分です。",
+    "cycleNatural": "今日は{value}潮 — {plain}",
+    "plainSpring": "流れが非常に強くなる時期です。",
+    "plainNeap": "潮の動きが比較的小さい時期です。",
+    "plainNormal": "今日は潮がほどよく流れます。",
+    "offline": "オフライン · 保存済み予報"
+  },
+  "glossary": {
+    "mulddae": "潮の番号",
+    "mulddaeDescription": "月の影響による潮の動きを1〜15で表します。",
+    "spring": "大潮",
+    "springDescription": "潮の満ち引きが最も大きい時期です。",
+    "neap": "小潮",
+    "neapDescription": "潮の動きが最も小さい時期です。"
+  },
+  "errors": {
+    "fallback": "気象庁データを取得できないため代替予報を使用しています。",
+    "marineUnavailable": "海洋予報を一時的に取得できません。",
+    "weatherUnavailable": "天気情報を一時的に取得できません。",
+    "invalidCoordinates": "有効な座標が必要です。",
+    "invalidForecastRange": "有効な予報範囲が必要です。",
+    "tideModelFallback": "公式潮汐データの代わりに参考用数値モデルを使用しています。",
+    "invalidDate": "有効な日付が必要です。",
+    "tideUnavailable": "潮汐情報を一時的に取得できません。",
+    "offlineTide": "オフラインのため保存済み潮汐を表示します。",
+    "cctvNotFound": "CCTVが見つかりません。",
+    "invalidGridRequest": "有効なグリッド要求が必要です。"
+  },
+  "places": {
+    "aewol": "済州 涯月",
+    "aewolAddress": "済州特別自治道 済州市 涯月邑",
+    "hongKong": "香港",
+    "shanghai": "上海",
+    "taipei": "台北",
+    "seoul": "ソウル",
+    "pyongyang": "平壌",
+    "tokyo": "東京",
+    "sapporo": "札幌"
+  },
+  "sources": {
+    "label": "データ出典と基準時刻",
+    "weather": "韓国気象庁ナウキャストモック",
+    "marine": "海洋観測モック",
+    "tide": "潮汐予測モック",
+    "kmaUltra": "韓国気象庁超短期実況",
+    "openMeteo": "Open-Meteo予報",
+    "openMeteoMarine": "Open-Meteo海洋予報",
+    "khoaTide": "韓国海洋調査院潮汐予報",
+    "openMeteoTide": "参考用海面数値モデル",
+    "gridPreview": "グリッド描画検証用サンプルフィールド",
+    "gfsGrid": "NOAA GFS 0.25°予報",
+    "mockNotice": "UI確認用の固定データで、実際の観測値ではありません。",
+    "liveNotice": "リアルタイム予報は現地の状況と異なる場合があります。",
+    "ecmwfGrid": "ECMWF IFS 0.25°予報",
+    "iconGrid": "DWD ICON全球予報",
+    "gfsPreview": "GFS描画プレビュー",
+    "ecmwfPreview": "ECMWF描画プレビュー",
+    "iconPreview": "ICON描画プレビュー"
+  },
+  "confidence": {
+    "high": "信頼度 高",
+    "medium": "信頼度 中",
+    "diverging": "情報に差異"
+  },
+  "conditions": {
+    "clear": "晴れ",
+    "partly": "晴れ時々曇り",
+    "cloudy": "曇り",
+    "rain": "雨",
+    "snow": "雪",
+    "shower": "にわか雨",
+    "fog": "霧",
+    "thunder": "雷雨"
+  },
+  "weather": {
+    "feels": "体感 {value}°",
+    "summary": "風はほどよく、波は安定しています。",
+    "hourly": "時間別予報",
+    "daily": "週間予報",
+    "range": "{min}° / {max}°"
+  },
+  "metrics": {
+    "wind": "西風",
+    "wave": "波高",
+    "rain": "降水",
+    "seaTemp": "水温",
+    "now": "現在"
+  },
+  "units": {
+    "windValue": "{value} m/s",
+    "meterValue": "{value} m",
+    "percentValue": "{value}%",
+    "degreeValue": "{value}°"
+  },
+  "activities": {
+    "surf": "サーフィン",
+    "fishing": "釣り",
+    "drive": "ドライブ",
+    "cafe": "カフェ"
+  },
+  "advice": {
+    "title": "今日のアドバイス",
+    "surfNormal": "まずまず",
+    "surfReason": "午前は穏やか、午後は波が上がります。",
+    "fishingGood": "午後がおすすめ",
+    "fishingReason": "午後から潮の流れが良くなります。"
+  },
+  "tabs": {
+    "label": "スポット詳細",
+    "current": "現在",
+    "hourly": "時間別",
+    "weekly": "週間",
+    "cctv": "CCTV"
+  },
+  "spot": {
+    "sheetLabel": "涯月エリア詳細",
+    "favorite": "お気に入りに追加"
+  },
+  "safety": {
+    "title": "干潮前の安全時間を確認",
+    "description": "磯へ入る場合は12:51までの帰還を推奨します。",
+    "returnBy": "帰還推奨 {time} · 残り{minutes}分",
+    "disclaimer": "参考情報であり現地と異なる場合があります。救命胴衣を着用し気象・海洋警報を確認してください。緊急時は海洋警察122へ。",
+    "call": "海洋警察 122"
+  },
+  "tide": {
+    "pageTitle": "今日の潮汐",
+    "pageSubtitle": "涯月に最も近い観測所基準",
+    "today": "今日の潮位（{station}）",
+    "untilHigh": "満潮まで1時間22分",
+    "tableCaption": "今日の満潮・干潮時刻",
+    "event": "区分",
+    "time": "時刻",
+    "level": "潮位",
+    "high": "満潮",
+    "low": "干潮",
+    "cycle": "潮回り",
+    "cycleValue": "{value}潮",
+    "sunrise": "日の出",
+    "sunset": "日の入",
+    "moonrise": "月の出",
+    "risingTitle": "今は潮が満ちています。",
+    "risingDescription": "満潮まで1時間22分、次の干潮は13:51です。",
+    "cycleDescription": "今日は8潮で、流れがやや強い日です。",
+    "week": "7日間の潮汐",
+    "beginnerMode": "かんたん表示",
+    "advancedMode": "詳細表示",
+    "beginnerSummary": "流れは普通です",
+    "day": "9月{day}日"
+  },
+  "cctv": {
+    "previewLabel": "挟才ビーチCCTVプレビュー",
+    "preview": "{place} CCTVプレビュー",
+    "live": "LIVE CCTV",
+    "place": "挟才海水浴場",
+    "expand": "CCTVを拡大",
+    "play": "CCTVを再生",
+    "stop": "CCTVを停止",
+    "source": "Barum × 済州特別自治道 · モック",
+    "pageTitle": "済州の海CCTV",
+    "pageSubtitle": "現地映像と天気を一緒に確認",
+    "detailSubtitle": "映像・天気・潮汐をまとめて確認",
+    "nearby": "済州CCTV",
+    "distanceSort": "距離順",
+    "available": "正常",
+    "loading": "CCTV一覧を読み込み中",
+    "list": "一覧",
+    "map": "地図",
+    "mapLabel": "済州CCTV位置地図",
+    "openDetail": "詳細を見る",
+    "openProvider": "提供元ページへ移動",
+    "slow": "接続が遅れています。しばらくお待ちください。",
+    "failed": "映像を再生できません。",
+    "provider": "済州特別自治道",
+    "attribution": "出典：済州特別自治道",
+    "legal": "再配信権を確認した遠景CCTVのみ再生します。現地の安全状況を直接確認してください。",
+    "status": {
+      "online": "正常",
+      "degraded": "点検中",
+      "offline": "オフライン"
+    },
+    "registry": {
+      "hyeopjae": "挟才ビーチ",
+      "gwakji": "郭支ビーチ",
+      "handam": "漢潭海岸",
+      "hallim-port": "翰林港",
+      "aewol-port": "涯月港",
+      "iho": "梨湖テウビーチ",
+      "hamdeok": "咸徳ビーチ",
+      "woljeong": "月汀里ビーチ",
+      "seongsan": "城山港",
+      "jungmun": "中文ビーチ"
+    },
+    "places": {
+      "hyeopjae": "挟才ビーチ",
+      "gwakji": "郭支ビーチ",
+      "handam": "漢潭海岸",
+      "hallim": "翰林港"
+    }
+  },
+  "recommend": {
+    "gwakji": "郭支ビーチ",
+    "gwakjiDescription": "エメラルドの海と穏やかな波",
+    "gwakjiLocation": "済州市 涯月邑",
+    "dodu": "道頭レインボー海岸",
+    "doduDescription": "夕日が美しい済州の定番ドライブコース",
+    "doduLocation": "済州市 道頭洞",
+    "hallim": "翰林港",
+    "hallimDescription": "初心者も楽しめる生活釣りスポット",
+    "hallimLocation": "済州市 翰林邑",
+    "waveOne": "1.0 m",
+    "moderate": "適度",
+    "temp23": "23°",
+    "good": "良好",
+    "light": "弱い",
+    "temp22": "22°",
+    "highTime": "18:20",
+    "fair": "無難",
+    "temp21": "21°"
+  },
+  "travel": {
+    "title": "今日はどこへ？",
+    "subtitle": "天気と海の状態からおすすめ",
+    "categories": "旅行カテゴリー",
+    "recommendations": "今日のおすすめスポット",
+    "sunset": "夕日",
+    "fishing": "釣り",
+    "favorite": "お気に入り切替",
+    "cta": {
+      "surf": "サーフィン推薦",
+      "fishing": "CCTVを見る",
+      "drive": "ドライブ推薦",
+      "cafe": "カフェを見る"
+    },
+    "cctvTitle": "リアルタイムCCTV",
+    "cctvDescription": "今の済州の海を確認しましょう",
+    "beachCheck": "ビーチ状況",
+    "waveCheck": "波の高さ",
+    "weatherCheck": "現地天気",
+    "openCctv": "CCTVを開く",
+    "courses": "今日のおすすめコース",
+    "halfDay": "半日コース",
+    "sunsetSpot": "夕日の名所",
+    "rainOkay": "雨でもOK",
+    "course1": "涯月海岸散歩",
+    "course2": "西海岸夕日ドライブ",
+    "course3": "済州室内プラン"
+  },
+  "more": {
+    "title": "その他",
+    "subtitle": "自分に合う海の情報を設定",
+    "guest": "ログインして条件通知を受け取る",
+    "guestDescription": "保存場所と潮汐通知をまとめて管理します。",
+    "menu": "その他のメニュー",
+    "myInfo": "マイ情報",
+    "alerts": "通知設定",
+    "settings": "言語 · 単位 · テーマ",
+    "glossary": "潮汐用語集",
+    "safety": "安全ガイド",
+    "sources": "データ出典と精度",
+    "notice": "お知らせ · お問い合わせ",
+    "privacy": "規約 · プライバシー",
+    "phaseSix": "フェーズ6で提供"
+  },
+  "models": {
+    "label": "予報モデル",
+    "ecmwf": {
+      "short": "ECMWF",
+      "region": "欧州"
+    },
+    "gfs": {
+      "short": "GFS",
+      "region": "米国"
+    },
+    "icon": {
+      "short": "ICON",
+      "region": "ドイツ"
+    }
   }
 }

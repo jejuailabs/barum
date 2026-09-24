@@ -14,4 +14,4 @@
 | 7 운영·여행 | `5-account-admin.md` §10, `3-engine.md` §7.5~7.6, `7-roadmap.md` Phase 7 |
 | 8 출시 | `6-infra.md` §16·§19~21, `7-roadmap.md` Phase 8 |
 
-제품 맥락은 `1-product.md`, 작업 결정은 `DECISIONS.md`, Phase 0 실행 기록과 다음 담당자 지시는 `HANDOFF-P0.md`를 참조한다. `PROMPTS.md`의 오래된 파일명은 이 인덱스에 대응시킨다.
+제품 맥락은 `1-product.md`, 작업 결정은 `DECISIONS.md`, 최신 실행 기록과 다음 담당자 지시는 `HANDOFF-P5.md`를 참조한다. Phase별 이력은 `HANDOFF-P0.md`부터 `HANDOFF-P5.md`까지 남아 있다. `PROMPTS.md`의 오래된 파일명은 이 인덱스에 대응시킨다.

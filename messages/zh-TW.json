@@ -51,5 +51,348 @@
     "temp": "氣溫 · °C",
     "rain": "降水 · mm/h",
     "wave": "波高 · m"
+  },
+  "product": {
+    "mapLabel": "濟州互動地圖",
+    "mapLoading": "地圖載入中",
+    "search": "搜尋地區",
+    "locate": "前往目前位置",
+    "zoomIn": "放大地圖",
+    "zoomOut": "縮小地圖",
+    "aewol": "濟州涯月",
+    "live": "即時",
+    "resizeSheet": "調整詳情面板",
+    "skip": "跳到正文",
+    "openDetail": "查看涯月詳情",
+    "mockFlag": "Phase 1 UI 模擬",
+    "weatherLoading": "正在載入即時天氣",
+    "liveWeather": "即時地點天氣",
+    "locationUnavailable": "此裝置無法使用位置資訊。",
+    "locationUpdated": "已移至目前位置。",
+    "locationDenied": "請檢查位置權限。",
+    "searchNotFound": "暫不支援該濟州地區。",
+    "searchMoved": "已移至{place}。"
+  },
+  "nav": {
+    "label": "主選單",
+    "tide": "潮汐",
+    "cctv": "CCTV",
+    "home": "Barum",
+    "travel": "旅行",
+    "more": "更多"
+  },
+  "layers": {
+    "label": "地圖圖層",
+    "wind": "風",
+    "rain": "降水",
+    "temp": "氣溫",
+    "wave": "海浪",
+    "tide": "潮汐"
+  },
+  "timeline": {
+    "label": "預報時間",
+    "play": "播放預報",
+    "pause": "暫停預報",
+    "now": "現在",
+    "oneHour": "1小時",
+    "threeHours": "3小時",
+    "tonight": "今晚",
+    "tomorrow": "明天",
+    "sevenDays": "7天",
+    "fifteenDays": "15天",
+    "forecastHour": "+{hour}小時",
+    "gridReference": "+{hour}小時 · 模型 {time} KST"
+  },
+  "common": {
+    "more": "更多",
+    "back": "返回"
+  },
+  "tideLive": {
+    "phase": {
+      "rising": "現在海水正在上漲。",
+      "falling": "現在海水正在退去。",
+      "nearHigh": "接近高潮，水位較高。",
+      "nearLow": "接近低潮，水位較低。"
+    },
+    "eventCountdown": "距{event}{minutes}分鐘",
+    "noNextEvent": "正在確認下一次潮汐",
+    "nextEvent": "距下一次{event}還有{minutes}分鐘。",
+    "cycleNatural": "今天是{value}潮 — {plain}",
+    "plainSpring": "水流會變得非常強。",
+    "plainNeap": "水流變化相對較小。",
+    "plainNormal": "今天水流較為活躍。",
+    "offline": "離線 · 已儲存預報"
+  },
+  "glossary": {
+    "mulddae": "潮數",
+    "mulddaeDescription": "用1至15表示月球影響下的潮流變化。",
+    "spring": "大潮",
+    "springDescription": "潮差最大的時期。",
+    "neap": "小潮",
+    "neapDescription": "潮水運動最小的時期。"
+  },
+  "errors": {
+    "fallback": "韓國氣象廳資料無法使用，目前採用備援預報。",
+    "marineUnavailable": "暫時無法載入海洋預報。",
+    "weatherUnavailable": "暫時無法載入天氣資訊。",
+    "invalidCoordinates": "需要有效座標。",
+    "invalidForecastRange": "需要有效的預報範圍。",
+    "tideModelFallback": "正在使用參考海面模型取代官方潮汐資料。",
+    "invalidDate": "需要有效日期。",
+    "tideUnavailable": "暫時無法載入潮汐資訊。",
+    "offlineTide": "離線時顯示已儲存的潮汐。",
+    "cctvNotFound": "找不到CCTV。",
+    "invalidGridRequest": "需要有效的網格請求。"
+  },
+  "places": {
+    "aewol": "濟州涯月",
+    "aewolAddress": "濟州特別自治道濟州市涯月邑",
+    "hongKong": "香港",
+    "shanghai": "上海",
+    "taipei": "臺北",
+    "seoul": "首爾",
+    "pyongyang": "平壤",
+    "tokyo": "東京",
+    "sapporo": "札幌"
+  },
+  "sources": {
+    "label": "資料來源和基準時間",
+    "weather": "韓國氣象廳臨近實況模擬",
+    "marine": "海洋觀測模擬",
+    "tide": "潮汐預報模擬",
+    "kmaUltra": "韓國氣象廳臨近實況",
+    "openMeteo": "Open-Meteo預報",
+    "openMeteoMarine": "Open-Meteo海洋預報",
+    "khoaTide": "韓國海洋調查院潮汐預報",
+    "openMeteoTide": "參考海面數值模型",
+    "gridPreview": "用於驗證網格渲染器的範例場",
+    "gfsGrid": "NOAA GFS 0.25°預報",
+    "mockNotice": "僅用於介面審核的固定資料，並非即時觀測。",
+    "liveNotice": "即時預報可能與現場狀況不同。",
+    "ecmwfGrid": "ECMWF IFS 0.25°預報",
+    "iconGrid": "DWD ICON全球預報",
+    "gfsPreview": "GFS繪製預覽",
+    "ecmwfPreview": "ECMWF繪製預覽",
+    "iconPreview": "ICON繪製預覽"
+  },
+  "confidence": {
+    "high": "可信度高",
+    "medium": "可信度中",
+    "diverging": "來源不一致"
+  },
+  "conditions": {
+    "clear": "晴朗",
+    "partly": "少雲",
+    "cloudy": "多雲",
+    "rain": "雨",
+    "snow": "雪",
+    "shower": "陣雨",
+    "fog": "霧",
+    "thunder": "雷雨"
+  },
+  "weather": {
+    "feels": "體感 {value}°",
+    "summary": "目前風力適中，海浪穩定。",
+    "hourly": "逐小時預報",
+    "daily": "每日預報",
+    "range": "{min}° / {max}°"
+  },
+  "metrics": {
+    "wind": "西風",
+    "wave": "浪高",
+    "rain": "降水",
+    "seaTemp": "水溫",
+    "now": "現在"
+  },
+  "units": {
+    "windValue": "{value} m/s",
+    "meterValue": "{value} m",
+    "percentValue": "{value}%",
+    "degreeValue": "{value}°"
+  },
+  "activities": {
+    "surf": "衝浪",
+    "fishing": "釣魚",
+    "drive": "自駕",
+    "cafe": "咖啡館"
+  },
+  "advice": {
+    "title": "今日建議",
+    "surfNormal": "一般",
+    "surfReason": "上午平靜，下午浪勢增強。",
+    "fishingGood": "推薦下午",
+    "fishingReason": "下午水流條件轉好。"
+  },
+  "tabs": {
+    "label": "地點詳情",
+    "current": "現在",
+    "hourly": "逐小時",
+    "weekly": "每週",
+    "cctv": "CCTV"
+  },
+  "spot": {
+    "sheetLabel": "涯月地區詳情",
+    "favorite": "加入收藏"
+  },
+  "safety": {
+    "title": "確認退潮前安全時間",
+    "description": "進入海邊礁石時，建議在12:51前返回。",
+    "returnBy": "建議{time}前返回 · 剩餘{minutes}分鐘",
+    "disclaimer": "僅供參考，現場情況可能不同。請穿救生衣並確認氣象與海洋警報，緊急時撥打海洋警察122。",
+    "call": "海洋警察 122"
+  },
+  "tide": {
+    "pageTitle": "今日潮汐",
+    "pageSubtitle": "以涯月附近觀測站為準",
+    "today": "今日潮位（{station}）",
+    "untilHigh": "距滿潮1小時22分",
+    "tableCaption": "今日滿潮和乾潮時間",
+    "event": "類型",
+    "time": "時間",
+    "level": "潮位",
+    "high": "滿潮",
+    "low": "乾潮",
+    "cycle": "潮次",
+    "cycleValue": "第{value}潮",
+    "sunrise": "日出",
+    "sunset": "日落",
+    "moonrise": "月出",
+    "risingTitle": "現在海水正在上漲。",
+    "risingDescription": "距滿潮1小時22分，下次乾潮為13:51。",
+    "cycleDescription": "今天是第8潮，水流較強。",
+    "week": "7日潮汐表",
+    "beginnerMode": "簡易模式",
+    "advancedMode": "詳細模式",
+    "beginnerSummary": "水流普通",
+    "day": "9月{day}日"
+  },
+  "cctv": {
+    "previewLabel": "挾才海灘CCTV預覽",
+    "preview": "{place} CCTV預覽",
+    "live": "即時 CCTV",
+    "place": "挾才海水浴場",
+    "expand": "放大CCTV",
+    "play": "播放CCTV",
+    "stop": "停止CCTV",
+    "source": "Barum × 濟州特別自治道 · 模擬",
+    "pageTitle": "濟州海邊CCTV",
+    "pageSubtitle": "同時查看現場畫面和天氣",
+    "detailSubtitle": "同時查看影像、天氣和潮汐",
+    "nearby": "濟州CCTV",
+    "distanceSort": "按距離",
+    "available": "正常",
+    "loading": "正在載入CCTV列表",
+    "list": "列表",
+    "map": "地圖",
+    "mapLabel": "濟州CCTV位置地圖",
+    "openDetail": "查看詳情",
+    "openProvider": "前往提供機構頁面",
+    "slow": "連線較慢，請稍候。",
+    "failed": "無法播放影像。",
+    "provider": "濟州特別自治道",
+    "attribution": "來源：濟州特別自治道",
+    "legal": "僅播放已確認再傳播許可的遠景CCTV。請自行確認現場安全狀況。",
+    "status": {
+      "online": "正常",
+      "degraded": "檢查中",
+      "offline": "離線"
+    },
+    "registry": {
+      "hyeopjae": "挾才海灘",
+      "gwakji": "郭支海灘",
+      "handam": "漢潭海岸",
+      "hallim-port": "翰林港",
+      "aewol-port": "涯月港",
+      "iho": "梨湖木筏海灘",
+      "hamdeok": "咸德海灘",
+      "woljeong": "月汀里海灘",
+      "seongsan": "城山港",
+      "jungmun": "中文海灘"
+    },
+    "places": {
+      "hyeopjae": "挾才海灘",
+      "gwakji": "郭支海灘",
+      "handam": "漢潭海岸",
+      "hallim": "翰林港"
+    }
+  },
+  "recommend": {
+    "gwakji": "郭支海灘",
+    "gwakjiDescription": "翡翠色海水與柔和海浪",
+    "gwakjiLocation": "濟州市涯月邑",
+    "dodu": "道頭彩虹海岸",
+    "doduDescription": "欣賞日落的濟州經典自駕路線",
+    "doduLocation": "濟州市道頭洞",
+    "hallim": "翰林港",
+    "hallimDescription": "適合初學者的休閒釣魚地點",
+    "hallimLocation": "濟州市翰林邑",
+    "waveOne": "1.0 m",
+    "moderate": "適中",
+    "temp23": "23°",
+    "good": "良好",
+    "light": "微弱",
+    "temp22": "22°",
+    "highTime": "18:20",
+    "fair": "尚可",
+    "temp21": "21°"
+  },
+  "travel": {
+    "title": "今天去哪裡？",
+    "subtitle": "根據天氣和海況推薦",
+    "categories": "旅行分類",
+    "recommendations": "今日推薦地點",
+    "sunset": "日落",
+    "fishing": "釣魚",
+    "favorite": "切換收藏",
+    "cta": {
+      "surf": "衝浪推薦",
+      "fishing": "查看CCTV",
+      "drive": "自駕推薦",
+      "cafe": "查看咖啡館"
+    },
+    "cctvTitle": "連接即時CCTV",
+    "cctvDescription": "立即查看濟州海邊",
+    "beachCheck": "海灘狀況",
+    "waveCheck": "浪高",
+    "weatherCheck": "現場天氣",
+    "openCctv": "開啟CCTV",
+    "courses": "今日推薦路線",
+    "halfDay": "半日路線",
+    "sunsetSpot": "日落名勝",
+    "rainOkay": "雨天也可",
+    "course1": "涯月海邊散步",
+    "course2": "西部日落自駕",
+    "course3": "濟州室內一日"
+  },
+  "more": {
+    "title": "更多",
+    "subtitle": "設定適合你的海洋資訊",
+    "guest": "登入並接收個人提醒",
+    "guestDescription": "統一管理收藏地點和潮汐提醒。",
+    "menu": "更多選單",
+    "myInfo": "我的資訊",
+    "alerts": "提醒設定",
+    "settings": "語言 · 單位 · 主題",
+    "glossary": "潮汐詞典",
+    "safety": "安全指南",
+    "sources": "資料來源與準確度",
+    "notice": "公告 · 洽詢",
+    "privacy": "條款 · 隱私政策",
+    "phaseSix": "第6階段提供"
+  },
+  "models": {
+    "label": "預報模型",
+    "ecmwf": {
+      "short": "ECMWF",
+      "region": "歐洲"
+    },
+    "gfs": {
+      "short": "GFS",
+      "region": "美國"
+    },
+    "icon": {
+      "short": "ICON",
+      "region": "德國"
+    }
   }
 }

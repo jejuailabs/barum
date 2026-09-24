@@ -1,12 +1,12 @@
 # 바름닷컴
 
-제주 중심 해양·기상 플랫폼. 현재 Phase 0 기반 구현.
+제주 중심 해양·기상 플랫폼. Phase 1~5 UI, 지점 날씨, 물때, CCTV 기반 구조, WebGL 격자 레이어까지 구현되어 있다.
 
-먼저 [AGENTS.md](AGENTS.md), [문서 인덱스](docs/00-INDEX.md), [Phase 0 인수인계](docs/HANDOFF-P0.md)를 읽는다.
+먼저 [AGENTS.md](AGENTS.md), [문서 인덱스](docs/00-INDEX.md), [Phase 5 인수인계](docs/HANDOFF-P5.md)를 읽는다. 환경값 종류는 [환경 변수 안내](docs/ENVIRONMENT.md)에 정리되어 있다.
 
 ## 로컬 실행
 
-Node 22가 필요하다. `npm ci` 후 `npm run dev`를 실행한다. 현재 `.env.local`은 사용자가 지정한 `barum-10aad` 프로젝트에 연결한다. 새 환경에서는 `.env.example`을 복사하고 공개 API 키와 서버용 서비스 계정(base64)을 채운다. `.env.local`과 원본 서비스 계정은 Git 제외 대상이다. 환경 파일 없이 실행하면 에뮬레이터용 UI 기본값을 사용한다.
+Node 22가 필요하다. `npm ci` 후 `npm run dev`를 실행한다. predev/prebuild가 로컬 글꼴과 MapLibre 워커 파일을 `public/`에 준비한다. 현재 `.env.local`은 사용자가 지정한 `barum-10aad` 프로젝트에 연결되어 있다. Firebase 값과 서비스 계정은 반영 완료됐고, 사용자가 추가할 값은 `KMA_SERVICE_KEY`와 `KHOA_SERVICE_KEY` 두 개다. 둘 다 비어 있어도 폴백 소스로 실행된다. `.env.local`과 원본 서비스 계정은 Git 제외 대상이다.
 
 - 홈: http://localhost:3000
 - 토큰 갤러리: http://localhost:3000/dev/gallery
@@ -43,4 +43,4 @@ GitHub 저장소는 [jejuailabs/barum](https://github.com/jejuailabs/barum), 기
 
 Vercel의 GitHub 자동 연결과 배포는 사용자가 관리한다. 에이전트는 별도 요청 없이 Vercel 프로젝트·환경변수·배포를 조작하지 않는다.
 
-현재 홈은 Phase 0 검수 화면이다. 지도·바텀시트·하단 5탭·실제 기상 데이터는 다음 Phase에서 구현한다. `/dev/gallery`는 계속 유지한다.
+현재 홈은 MapLibre 기반 지도 중심 UI다. 지점 날씨는 실시간 Open-Meteo 폴백이 연결되어 있고, KMA 키를 넣으면 공식 초단기 자료를 우선한다. 물때는 KHOA 키가 없을 때 참고 모델로 표시된다. CCTV는 재배포 권한 확인 전 제공기관 링크 모드다. 기상 지도는 로컬에 내려받은 NOAA GFS 0.25° 바람·강수·기온·파도 17×15 격자를 +120시간까지 표시하며, 수집 파일이 없을 때만 출처가 명시된 `BARUM_POC` 필드로 폴백한다. `/dev/gallery`는 계속 유지한다.
