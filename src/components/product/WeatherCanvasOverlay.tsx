@@ -56,10 +56,22 @@ function normalizedValue(frame: GridFrame, value: number) {
 }
 
 function fieldOpacity(frame: GridFrame, value: number) {
-  if (frame.variable === 'rain') return value < .08 ? 0 : Math.min(.86, .38 + normalizedValue(frame, value) * .48);
+  if (frame.variable === 'rain') {
+    if (value < .02) return 0;
+    const onset = Math.min(1, (value - .02) / .3);
+    const softened = onset * onset * (3 - 2 * onset);
+    return softened * Math.min(.84, .14 + normalizedValue(frame, value) * .7);
+  }
   if (frame.variable === 'wave') return value < .05 ? 0 : Math.min(.82, .62 + normalizedValue(frame, value) * .2);
-  if (frame.variable === 'wind') return .72;
-  return .7;
+  if (frame.variable === 'wind') return .58;
+  return .64;
+}
+
+function boundsOpacity(frame: GridFrame, lng: number, lat: number) {
+  const longitudeFade = Math.min(1, Math.max(0, Math.min(lng - frame.bounds.west, frame.bounds.east - lng) / 1.5));
+  const latitudeFade = Math.min(1, Math.max(0, Math.min(lat - frame.bounds.south, frame.bounds.north - lat) / 1.2));
+  const edge = Math.min(longitudeFade, latitudeFade);
+  return edge * edge * (3 - 2 * edge);
 }
 
 function coordinateNoise(x: number, y: number) {
@@ -189,7 +201,7 @@ export function WeatherCanvasOverlay({frame, map}: {frame: GridFrame | null; map
           const lng = longitudes[x];
           if (lng < frame!.bounds.west || lng > frame!.bounds.east) continue;
           const value = sampleGrid(frame!, lng, lat);
-          const alpha = fieldOpacity(frame!, value);
+          const alpha = fieldOpacity(frame!, value) * boundsOpacity(frame!, lng, lat);
           if (alpha === 0) continue;
           const color = mixRamp(ramp, normalizedValue(frame!, value));
           const offset = (y * rasterWidth + x) * 4;
@@ -242,17 +254,21 @@ export function WeatherCanvasOverlay({frame, map}: {frame: GridFrame | null; map
             flowContext!.stroke();
           } else {
             if (value < .1) continue;
-            if (value >= 2) {
+            const lightningChance = coordinateNoise(Math.round(point.lng * 17 + 31), Math.round(point.lat * 17 - 19));
+            const lightningThreshold = Math.max(.38, .78 - Math.min(value, 30) / 75);
+            if (value >= 5 && lightningChance > lightningThreshold) {
+              const jitterX = (noise - .5) * 12;
+              const jitterY = (lightningChance - .5) * 10;
               flowContext!.strokeStyle = token('--weather-lightning');
               flowContext!.shadowColor = token('--weather-lightning-glow');
               flowContext!.shadowBlur = 7;
               flowContext!.globalAlpha = Math.min(.95, .58 + value / 50);
               flowContext!.lineWidth = 1.7;
               flowContext!.beginPath();
-              flowContext!.moveTo(x + 2, y - 8);
-              flowContext!.lineTo(x - 2, y);
-              flowContext!.lineTo(x + 1, y);
-              flowContext!.lineTo(x - 3, y + 8);
+              flowContext!.moveTo(x + jitterX + 2, y + jitterY - 8);
+              flowContext!.lineTo(x + jitterX - 2, y + jitterY);
+              flowContext!.lineTo(x + jitterX + 1, y + jitterY);
+              flowContext!.lineTo(x + jitterX - 3, y + jitterY + 8);
               flowContext!.stroke();
             } else {
               flowContext!.strokeStyle = token('--weather-rain-streak');

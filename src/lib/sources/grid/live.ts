@@ -45,7 +45,9 @@ async function readJson(filePath: string) {
 async function loadModelGrid(model: GridModel, variable: GridVariable, requestedStep: number): Promise<GridFrame | null> {
   try {
     const root = path.join(process.cwd(), 'data', 'grid');
-    const modelRoot = path.join(root, model.toLowerCase());
+    // The original NOAA ingest stores GFS directly under data/grid, while
+    // additional model ingests have their own subdirectories.
+    const modelRoot = model === 'GFS' ? root : path.join(root, model.toLowerCase());
     let manifestDir = modelRoot;
     let rawManifest: unknown;
     try {
