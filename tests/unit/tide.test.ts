@@ -7,10 +7,10 @@ import {fetchOpenMeteoTide, normalizeOpenMeteoTide} from '../../src/lib/sources/
 const station = getTideStation('aewol');
 const date = '2026-09-23';
 const khoaItems = [
-  {tph_time: `${date} 01:10`, tph_level: 38, hl_code: '저조'},
-  {tph_time: `${date} 07:22`, tph_level: 214, hl_code: '고조'},
-  {tph_time: `${date} 13:42`, tph_level: 31, hl_code: '저조'},
-  {tph_time: `${date} 20:03`, tph_level: 221, hl_code: '고조'}
+  {obsvtrNm: 'Jeju', predcDt: `${date} 01:10`, predcTdlvVl: 38, extrSe: '2'},
+  {obsvtrNm: 'Jeju', predcDt: `${date} 07:22`, predcTdlvVl: 214, extrSe: '1'},
+  {obsvtrNm: 'Jeju', predcDt: `${date} 13:42`, predcTdlvVl: 31, extrSe: '4'},
+  {obsvtrNm: 'Jeju', predcDt: `${date} 20:03`, predcTdlvVl: 221, extrSe: '3'}
 ];
 
 describe('tide calculation', () => {
@@ -42,7 +42,7 @@ describe('KHOA tide adapter', () => {
     expect(tide.observed).toBe(false);
   });
   it('validates and fetches a KHOA response', async () => {
-    const fetcher = vi.fn(async () => new Response(JSON.stringify({result: {data: khoaItems}}))) as unknown as typeof fetch;
+    const fetcher = vi.fn(async () => new Response(JSON.stringify({header: {resultCode: '00', resultMsg: 'NORMAL_SERVICE'}, body: {items: {item: khoaItems}}}))) as unknown as typeof fetch;
     const tide = await fetchKhoaTidePrediction(station, date, 'key', fetcher);
     expect(tide.events).toHaveLength(4);
   });

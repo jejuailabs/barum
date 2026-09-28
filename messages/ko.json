@@ -84,7 +84,9 @@
   "layers": {
     "label": "지도 레이어",
     "wind": "바람",
-    "rain": "강수",
+    "rain": "비·번개",
+    "rainDerived": "강한 강수 기반 번개 가능 표시",
+    "rainPreviewTime": "가까운 비·번개 예보 시각으로 이동했습니다",
     "temp": "기온",
     "wave": "파도",
     "tide": "물때"

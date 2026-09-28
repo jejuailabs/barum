@@ -7,10 +7,10 @@ import {interpolateFrames} from '@/lib/grid/interpolate';
 import {WeatherCanvasOverlay} from './WeatherCanvasOverlay';
 
 const legendTicks: Record<GridVariable, number[]> = {
-  wind: [0, 5, 10, 15, 20, 25],
-  rain: [0, 1, 5, 10, 20, 40],
-  temp: [-10, 0, 10, 20, 30, 40],
-  wave: [0, .5, 1, 2, 3, 5]
+  wind: [0, 2.5, 5, 10, 15, 20, 31, 40],
+  rain: [.1, .3, 1, 2, 5, 10, 20, 40],
+  temp: [-30, -20, -10, 0, 10, 20, 30, 45],
+  wave: [.1, .5, 1, 1.5, 2, 3.5, 6, 9]
 };
 
 export function MapStage({compact = false, onLocationSelect, onMapReady, layer = 'wind', model = 'GFS', timeValue = 0}: {compact?: boolean; onLocationSelect?: (lat: number, lng: number) => void; onMapReady?: (map: import('maplibre-gl').Map) => void; layer?: GridVariable; model?: GridModel; timeValue?: number}) {
@@ -89,7 +89,7 @@ export function MapStage({compact = false, onLocationSelect, onMapReady, layer =
     <div className="map-tint" aria-hidden="true" />
     <WeatherCanvasOverlay frame={gridFrame} map={mapInstance}/>
     {!ready && <div className="map-loading" role="status">{productT('mapLoading')}</div>}
-    <div className="grid-source"><strong>{t(`layers.${layer}` as never)}</strong><span>{t((gridFrame?.sourceLabelKey ?? 'sources.gridPreview') as never)}</span>{valueRange && <em>{valueRange.min.toFixed(1)}–{valueRange.max.toFixed(1)} {gridFrame?.units}</em>}
+    <div className="grid-source"><strong>{t(`layers.${layer}` as never)}</strong><span>{t((gridFrame?.sourceLabelKey ?? 'sources.gridPreview') as never)}</span>{layer === 'rain' && <span>{t('layers.rainDerived')}</span>}{valueRange && <em>{valueRange.min.toFixed(1)}–{valueRange.max.toFixed(1)} {gridFrame?.units}</em>}
       {gridFrame && <div className={`grid-scale grid-scale-${layer}`} aria-hidden="true"><i/><div>{legendTicks[layer].map(value => <span key={value}>{value}</span>)}</div><small>{gridFrame.units}</small></div>}
       {modelRun && <time dateTime={gridFrame?.runAt}>{t('timeline.gridReference', {hour: Math.round(timeValue / 100 * 120), time: modelRun})}</time>}</div>
     <div className="map-attribution"><a href="https://openfreemap.org/" target="_blank" rel="noreferrer">{'OpenFreeMap'}</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">{'© OpenStreetMap'}</a></div>

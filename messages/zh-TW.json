@@ -84,7 +84,9 @@
   "layers": {
     "label": "地圖圖層",
     "wind": "風",
-    "rain": "降水",
+    "rain": "降雨·雷電",
+    "rainDerived": "依強降水推算的雷電可能區",
+    "rainPreviewTime": "已移至最近的降雨與雷電預報時段",
     "temp": "氣溫",
     "wave": "海浪",
     "tide": "潮汐"

@@ -84,7 +84,9 @@
   "layers": {
     "label": "Map layers",
     "wind": "Wind",
-    "rain": "Rain",
+    "rain": "Rain · thunder",
+    "rainDerived": "Lightning potential derived from heavy rain",
+    "rainPreviewTime": "Moved to the nearest rain and thunder forecast",
     "temp": "Temp",
     "wave": "Waves",
     "tide": "Tides"

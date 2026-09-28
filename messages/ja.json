@@ -84,7 +84,9 @@
   "layers": {
     "label": "地図レイヤー",
     "wind": "風",
-    "rain": "雨",
+    "rain": "雨・雷",
+    "rainDerived": "強い降水から推定した雷の可能性",
+    "rainPreviewTime": "最も近い雨・雷予報時刻に移動しました",
     "temp": "気温",
     "wave": "波",
     "tide": "潮汐"

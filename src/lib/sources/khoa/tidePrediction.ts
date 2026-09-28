@@ -4,8 +4,16 @@ import type {TideStation} from '@/lib/tide/stations';
 import {southSeaMulddae, tidePhase} from '@/lib/tide/calculate';
 import {fetchParsed} from '../http';
 
-const rawItem = z.object({tph_time: z.string(), tph_level: z.coerce.number(), hl_code: z.string()});
-const responseSchema = z.object({result: z.object({data: z.array(rawItem)})});
+const rawItem = z.object({
+  obsvtrNm: z.string(),
+  predcDt: z.string(),
+  predcTdlvVl: z.coerce.number(),
+  extrSe: z.string()
+});
+const responseSchema = z.object({
+  header: z.object({resultCode: z.string(), resultMsg: z.string()}),
+  body: z.object({items: z.object({item: z.array(rawItem)})})
+});
 export type KhoaTideItem = z.infer<typeof rawItem>;
 
 function interpolateEvents(events: NormalizedTide['events'], date: string) {
@@ -27,8 +35,11 @@ function interpolateEvents(events: NormalizedTide['events'], date: string) {
 }
 
 export function normalizeKhoaTide(items: KhoaTideItem[], station: TideStation, date: string, now = new Date()): NormalizedTide {
-  const events = items.map(item => ({type: /고|high/i.test(item.hl_code) ? 'high' as const : 'low' as const,
-    at: item.tph_time.includes('T') ? item.tph_time : `${item.tph_time.replace(' ', 'T')}+09:00`, level: item.tph_level / 100})).sort((a,b) => a.at.localeCompare(b.at));
+  const events = items.map(item => ({
+    type: Number(item.extrSe) % 2 === 1 ? 'high' as const : 'low' as const,
+    at: `${item.predcDt.replace(' ', 'T')}+09:00`,
+    level: item.predcTdlvVl / 100
+  })).sort((a,b) => a.at.localeCompare(b.at));
   if (events.length < 2) throw new Error('KHOA tide events are incomplete');
   const series = interpolateEvents(events, date);
   const nearest = series.reduce((best, item) => Math.abs(Date.parse(item.at) - now.getTime()) < Math.abs(Date.parse(best.at) - now.getTime()) ? item : best, series[0]);
@@ -39,7 +50,8 @@ export function normalizeKhoaTide(items: KhoaTideItem[], station: TideStation, d
 }
 
 export async function fetchKhoaTidePrediction(station: TideStation, date: string, serviceKey: string, fetcher?: typeof fetch) {
-  const params = new URLSearchParams({ServiceKey: serviceKey, ObsCode: station.stationId, Date: date.replaceAll('-', ''), ResultType: 'json'});
-  const raw = await fetchParsed(`https://www.khoa.go.kr/api/oceangrid/tideObsPre/search.do?${params}`, responseSchema, {fetcher, circuitKey: 'khoa-tide-prediction'});
-  return normalizeKhoaTide(raw.result.data, station, date);
+  const params = new URLSearchParams({serviceKey, pageNo: '1', numOfRows: '20', type: 'json', obsCode: station.stationId, reqDate: date.replaceAll('-', '')});
+  const raw = await fetchParsed(`https://apis.data.go.kr/1192136/tideFcstHghLw/GetTideFcstHghLwApiService?${params}`, responseSchema, {fetcher, circuitKey: 'khoa-tide-prediction'});
+  if (raw.header.resultCode !== '00') throw new Error(`KHOA tide request failed: ${raw.header.resultMsg}`);
+  return normalizeKhoaTide(raw.body.items.item, station, date);
 }

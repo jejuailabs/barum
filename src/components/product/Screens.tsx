@@ -95,13 +95,20 @@ export function MapHome({data}: {data: PhaseOneData}) {
     url.searchParams.set('at', new Date(Date.now() + value / 100 * 120 * 3_600_000).toISOString());
     window.history.replaceState(null, '', url);
   };
+  const selectLayer = (next: GridVariable) => {
+    setLayer(next);
+    if (next === 'rain' && timeValue === 0) {
+      selectTime(65);
+      notify(t('layers.rainPreviewTime'));
+    }
+  };
   return <main id="main" className="product-shell map-home"><SkipLink/><MapStage onLocationSelect={live.selectLocation} onMapReady={map => {
     mapRef.current = map;
     const pending = pendingMoveRef.current;
     if (pending) { map.flyTo({center:[pending.lng, pending.lat], zoom:pending.zoom, duration:900}); pendingMoveRef.current = null; }
   }} layer={layer} model={model} timeValue={timeValue}/>
     <div className="map-top"><SearchControl onSearch={search} onLocate={locate}/><UtilityControls/></div><div className="map-location"><LocationChip label={locationLabel} onClick={()=>moveTo(33.4621,126.3092,11,t('places.aewol'))}/></div>
-    <LayerRail value={layer} onChange={setLayer}/><MapTools onLocate={locate} onZoomIn={()=>mapRef.current?.zoomIn()} onZoomOut={()=>mapRef.current?.zoomOut()}/><div className="map-dock"><StatusDock data={live.data}/><ModelSelector value={model} onChange={setModel}/><TimelineSlider value={timeValue} onChange={selectTime}/></div>
+    <LayerRail value={layer} onChange={selectLayer}/><MapTools onLocate={locate} onZoomIn={()=>mapRef.current?.zoomIn()} onZoomOut={()=>mapRef.current?.zoomOut()}/><div className="map-dock"><StatusDock data={live.data}/><ModelSelector value={model} onChange={setModel}/><TimelineSlider value={timeValue} onChange={selectTime}/></div>
     {actionStatus && <div className="map-action-status" role="status">{actionStatus}</div>}
     <div className="mock-flag" data-live-loading={live.loading}>{productT(live.loading ? 'weatherLoading' : 'liveWeather')}</div><BottomNav/>
   </main>;
