@@ -108,6 +108,7 @@ export function WeatherCanvasOverlay({frame, map}: {frame: GridFrame | null; map
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const saveData = Boolean((navigator as Navigator & {connection?: {saveData?: boolean}}).connection?.saveData);
     let animation = 0;
+    let moveAnimation = 0;
     let last = performance.now();
     let moving = false;
     let active = true;
@@ -177,7 +178,6 @@ export function WeatherCanvasOverlay({frame, map}: {frame: GridFrame | null; map
       resizeCanvas(flowCanvas!, flowContext!);
       const width = fieldCanvas!.clientWidth;
       const height = fieldCanvas!.clientHeight;
-      fieldContext!.clearRect(0, 0, width, height);
 
       const sampleScale = innerWidth < 768 ? 3 : frame!.variable === 'wave' ? 5 : 4;
       const rasterWidth = Math.max(1, Math.ceil(width / sampleScale));
@@ -212,6 +212,7 @@ export function WeatherCanvasOverlay({frame, map}: {frame: GridFrame | null; map
         }
       }
       rasterContext.putImageData(image, 0, 0);
+      fieldContext!.clearRect(0, 0, width, height);
       fieldContext!.imageSmoothingEnabled = true;
       fieldContext!.imageSmoothingQuality = 'high';
       fieldContext!.drawImage(raster, 0, 0, width, height);
@@ -230,10 +231,15 @@ export function WeatherCanvasOverlay({frame, map}: {frame: GridFrame | null; map
       if (frame!.variable !== 'wave' && frame!.variable !== 'rain') return;
       const width = flowCanvas!.clientWidth;
       const height = flowCanvas!.clientHeight;
+      const texture = document.createElement('canvas');
+      texture.width = Math.max(1, Math.round(width));
+      texture.height = Math.max(1, Math.round(height));
+      const textureContext = texture.getContext('2d');
+      if (!textureContext) return;
       const waterMask = frame!.variable === 'wave' ? getWaterMask(width, height) : null;
       const waterMaskContext = waterMask?.canvas.getContext('2d', {willReadFrequently: true});
-      flowContext!.save();
-      flowContext!.lineCap = 'round';
+      textureContext.save();
+      textureContext.lineCap = 'round';
       for (let y = 28; y < height; y += frame!.variable === 'wave' ? 42 : 32) {
         for (let x = 24; x < width; x += frame!.variable === 'wave' ? 46 : 34) {
           const point = map!.unproject([x, y]);
@@ -245,13 +251,13 @@ export function WeatherCanvasOverlay({frame, map}: {frame: GridFrame | null; map
             if (value < .1 || noise < .24) continue;
             const angle = (noise - .5) * 1.5;
             const length = 5 + Math.min(8, value * 1.4);
-            flowContext!.strokeStyle = token('--weather-flow-line');
-            flowContext!.globalAlpha = .34 + Math.min(.28, value * .045);
-            flowContext!.lineWidth = 1.15;
-            flowContext!.beginPath();
-            flowContext!.moveTo(x - Math.cos(angle) * length / 2, y - Math.sin(angle) * length / 2);
-            flowContext!.quadraticCurveTo(x, y - 2.5, x + Math.cos(angle) * length / 2, y + Math.sin(angle) * length / 2);
-            flowContext!.stroke();
+            textureContext.strokeStyle = token('--weather-flow-line');
+            textureContext.globalAlpha = .34 + Math.min(.28, value * .045);
+            textureContext.lineWidth = 1.15;
+            textureContext.beginPath();
+            textureContext.moveTo(x - Math.cos(angle) * length / 2, y - Math.sin(angle) * length / 2);
+            textureContext.quadraticCurveTo(x, y - 2.5, x + Math.cos(angle) * length / 2, y + Math.sin(angle) * length / 2);
+            textureContext.stroke();
           } else {
             if (value < .1) continue;
             const lightningChance = coordinateNoise(Math.round(point.lng * 17 + 31), Math.round(point.lat * 17 - 19));
@@ -259,32 +265,34 @@ export function WeatherCanvasOverlay({frame, map}: {frame: GridFrame | null; map
             if (value >= 5 && lightningChance > lightningThreshold) {
               const jitterX = (noise - .5) * 12;
               const jitterY = (lightningChance - .5) * 10;
-              flowContext!.strokeStyle = token('--weather-lightning');
-              flowContext!.shadowColor = token('--weather-lightning-glow');
-              flowContext!.shadowBlur = 7;
-              flowContext!.globalAlpha = Math.min(.95, .58 + value / 50);
-              flowContext!.lineWidth = 1.7;
-              flowContext!.beginPath();
-              flowContext!.moveTo(x + jitterX + 2, y + jitterY - 8);
-              flowContext!.lineTo(x + jitterX - 2, y + jitterY);
-              flowContext!.lineTo(x + jitterX + 1, y + jitterY);
-              flowContext!.lineTo(x + jitterX - 3, y + jitterY + 8);
-              flowContext!.stroke();
+              textureContext.strokeStyle = token('--weather-lightning');
+              textureContext.shadowColor = token('--weather-lightning-glow');
+              textureContext.shadowBlur = 7;
+              textureContext.globalAlpha = Math.min(.95, .58 + value / 50);
+              textureContext.lineWidth = 1.7;
+              textureContext.beginPath();
+              textureContext.moveTo(x + jitterX + 2, y + jitterY - 8);
+              textureContext.lineTo(x + jitterX - 2, y + jitterY);
+              textureContext.lineTo(x + jitterX + 1, y + jitterY);
+              textureContext.lineTo(x + jitterX - 3, y + jitterY + 8);
+              textureContext.stroke();
             } else {
-              flowContext!.strokeStyle = token('--weather-rain-streak');
-              flowContext!.globalAlpha = .35 + Math.min(.35, value / 12);
-              flowContext!.lineWidth = 1;
-              flowContext!.beginPath();
-              flowContext!.moveTo(x - 3, y - 5);
-              flowContext!.lineTo(x + 1, y + 4);
-              flowContext!.moveTo(x + 5, y - 3);
-              flowContext!.lineTo(x + 8, y + 4);
-              flowContext!.stroke();
+              textureContext.strokeStyle = token('--weather-rain-streak');
+              textureContext.globalAlpha = .35 + Math.min(.35, value / 12);
+              textureContext.lineWidth = 1;
+              textureContext.beginPath();
+              textureContext.moveTo(x - 3, y - 5);
+              textureContext.lineTo(x + 1, y + 4);
+              textureContext.moveTo(x + 5, y - 3);
+              textureContext.lineTo(x + 8, y + 4);
+              textureContext.stroke();
             }
           }
         }
       }
-      flowContext!.restore();
+      textureContext.restore();
+      flowContext!.clearRect(0, 0, width, height);
+      flowContext!.drawImage(texture, 0, 0, width, height);
     }
 
     function drawFlow(now: number) {
@@ -318,7 +326,7 @@ export function WeatherCanvasOverlay({frame, map}: {frame: GridFrame | null; map
       }
       flowContext!.stroke();
       flowContext!.globalAlpha = 1;
-      if (active && !moving) animation = requestAnimationFrame(drawFlow);
+      if (active) animation = requestAnimationFrame(drawFlow);
     }
 
     function refresh() {
@@ -326,7 +334,7 @@ export function WeatherCanvasOverlay({frame, map}: {frame: GridFrame | null; map
       resetFlow();
       drawLayerTexture();
       cancelAnimationFrame(animation);
-      if (frame!.variable === 'wind' && !moving) {
+      if (frame!.variable === 'wind') {
         last = performance.now();
         animation = requestAnimationFrame(drawFlow);
       }
@@ -334,31 +342,43 @@ export function WeatherCanvasOverlay({frame, map}: {frame: GridFrame | null; map
 
     function beginMove() {
       moving = true;
-      cancelAnimationFrame(animation);
-      fieldCanvas!.style.opacity = '0';
-      fieldContext!.clearRect(0, 0, fieldCanvas!.clientWidth, fieldCanvas!.clientHeight);
-      flowContext!.clearRect(0, 0, flowCanvas!.clientWidth, flowCanvas!.clientHeight);
+    }
+
+    function renderMove() {
+      moveAnimation = 0;
+      if (!active || !moving) return;
+      drawField();
+      if (frame!.variable === 'wave' || frame!.variable === 'rain') {
+        drawLayerTexture();
+      }
+    }
+
+    function updateMove() {
+      if (!moveAnimation) moveAnimation = requestAnimationFrame(renderMove);
     }
 
     function endMove() {
       moving = false;
+      cancelAnimationFrame(moveAnimation);
+      moveAnimation = 0;
       refresh();
-      requestAnimationFrame(() => { if (active) fieldCanvas!.style.opacity = '1'; });
     }
 
     const observer = new ResizeObserver(refresh);
     observer.observe(fieldCanvas);
     map.on('movestart', beginMove);
+    map.on('move', updateMove);
     map.on('moveend', endMove);
     refresh();
 
     return () => {
       active = false;
       cancelAnimationFrame(animation);
+      cancelAnimationFrame(moveAnimation);
       observer.disconnect();
       map.off('movestart', beginMove);
+      map.off('move', updateMove);
       map.off('moveend', endMove);
-      fieldCanvas.style.opacity = '';
       fieldContext.clearRect(0, 0, fieldCanvas.clientWidth, fieldCanvas.clientHeight);
       flowContext.clearRect(0, 0, flowCanvas.clientWidth, flowCanvas.clientHeight);
     };
