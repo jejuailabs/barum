@@ -1,6 +1,6 @@
 'use client';
 
-import {useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
 import type {CctvRecord, GridModel, GridVariable, PhaseOneData} from '@/types/domain';
@@ -16,6 +16,7 @@ import {useLiveTide} from './useLiveTide';
 import {describeTide} from '@/lib/tide/calculate';
 import {CctvPlayer} from './CctvPlayer';
 import {useCctvRegistry} from './useCctvRegistry';
+import {MapCameras} from './MapCameras';
 
 function SkipLink() {
   const productT = useTranslations('product');
@@ -39,17 +40,18 @@ function SegmentedTabs({active, onChange}: {active: string; onChange: (value: st
   </div>;
 }
 
-function StatusDock({data}: {data: PhaseOneData}) {
+function StatusDock({data, onClick}: {data: PhaseOneData; onClick: () => void}) {
   const t = useTranslations();
-  return <Link href="/spot/aewol" className="status-dock glass-panel" aria-label={t('product.openDetail')}>
+  return <button type="button" onClick={onClick} className="status-dock glass-panel" aria-label={t('product.openDetail')}>
     <div className="status-weather"><WeatherGlyph condition={data.point.data.condition}/><span><small>{t('metrics.now')}</small><strong>{data.point.data.temperature}°</strong><em>{t(`conditions.${data.point.data.condition}` as never)}</em></span></div>
     <MetricGrid point={data.point.data} marine={data.marine.data} compact/>
     <ConfidenceBadge meta={data.point.meta}/>
-  </Link>;
+  </button>;
 }
 
 export function MapHome({data}: {data: PhaseOneData}) {
   const productT = useTranslations('product');
+  const mapT = useTranslations('mapUi');
   const t = useTranslations();
   const live = useLiveWeather(data);
   const mapRef = useRef<import('maplibre-gl').Map | null>(null);
@@ -59,6 +61,17 @@ export function MapHome({data}: {data: PhaseOneData}) {
   const [timeValue, setTimeValue] = useState(0);
   const [locationLabel, setLocationLabel] = useState(t('places.aewol'));
   const [actionStatus, setActionStatus] = useState<string | null>(null);
+  const [mapInstance, setMapInstance] = useState<import('maplibre-gl').Map | null>(null);
+  const [showCameras, setShowCameras] = useState(false);
+  const [panel, setPanel] = useState<'forecast' | 'cctv' | null>(null);
+  const [camera, setCamera] = useState<CctvRecord | null>(null);
+  const [baseTime, setBaseTime] = useState<number | undefined>();
+  const restoredTime = useRef(false);
+  useEffect(() => {
+    const close = (event: KeyboardEvent) => { if (event.key === 'Escape') setPanel(null); };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, []);
   const notify = (message: string) => { setActionStatus(message); window.setTimeout(() => setActionStatus(null), 2400); };
   const moveTo = (lat: number, lng: number, zoom = 11, label?: string) => {
     if (mapRef.current) mapRef.current.flyTo({center:[lng, lat], zoom, duration:900});
@@ -92,25 +105,41 @@ export function MapHome({data}: {data: PhaseOneData}) {
   const selectTime = (value: number) => {
     setTimeValue(value);
     const url = new URL(window.location.href);
-    url.searchParams.set('at', new Date(Date.now() + value / 100 * 120 * 3_600_000).toISOString());
+    url.searchParams.set('at', new Date((baseTime ?? Date.now()) + value * 1.2 * 3_600_000).toISOString());
     window.history.replaceState(null, '', url);
   };
   const selectLayer = (next: GridVariable) => {
     setLayer(next);
-    if (next === 'rain' && timeValue === 0) {
-      selectTime(65);
-      notify(t('layers.rainPreviewTime'));
-    }
   };
-  return <main id="main" className="product-shell map-home"><SkipLink/><MapStage onLocationSelect={live.selectLocation} onMapReady={map => {
+  return <main id="main" className="product-shell map-home" data-panel-open={Boolean(panel)}><SkipLink/><MapStage onLocationSelect={(lat, lng) => {
+    setLocationLabel(`${lat.toFixed(3)}, ${lng.toFixed(3)}`);
+    live.selectLocation(lat, lng); setPanel('forecast');
+  }} onMapReady={map => {
     mapRef.current = map;
+    setMapInstance(map);
     const pending = pendingMoveRef.current;
     if (pending) { map.flyTo({center:[pending.lng, pending.lat], zoom:pending.zoom, duration:900}); pendingMoveRef.current = null; }
+  }} onGridRun={at => {
+    setBaseTime(at);
+    if (!restoredTime.current) {
+      restoredTime.current = true;
+      const requested = Date.parse(new URL(window.location.href).searchParams.get('at') ?? '');
+      const hours = ((Number.isFinite(requested) ? requested : Date.now()) - at) / 3_600_000;
+      setTimeValue(Math.max(0, Math.min(100, Math.round(hours / 1.2 * 2) / 2)));
+    }
   }} layer={layer} model={model} timeValue={timeValue}/>
-    <div className="map-top"><SearchControl onSearch={search} onLocate={locate}/><UtilityControls/></div><div className="map-location"><LocationChip label={locationLabel} onClick={()=>moveTo(33.4621,126.3092,11,t('places.aewol'))}/></div>
-    <LayerRail value={layer} onChange={selectLayer}/><MapTools onLocate={locate} onZoomIn={()=>mapRef.current?.zoomIn()} onZoomOut={()=>mapRef.current?.zoomOut()}/><div className="map-dock"><StatusDock data={live.data}/><ModelSelector value={model} onChange={setModel}/><TimelineSlider value={timeValue} onChange={selectTime}/></div>
+    <div className="map-top"><Link className="map-brand" href="/" aria-label={t('app.name')}><Icon name="wind"/><strong>{t('app.name')}</strong></Link><SearchControl onSearch={search} onLocate={locate}/><UtilityControls/></div><div className="map-location"><LocationChip label={locationLabel} onClick={()=>moveTo(33.4621,126.3092,11,t('places.aewol'))}/></div>
+    <LayerRail value={layer} onChange={selectLayer}/>
+    <div className="map-extras"><button type="button" aria-expanded={panel === 'forecast'} onClick={() => setPanel(panel === 'forecast' ? null : 'forecast')}><Icon name="clock" size={20}/>{mapT('localForecast')}</button><button type="button" aria-pressed={showCameras} onClick={() => {setShowCameras(value => !value); if (panel === 'cctv') setPanel(null);}}><Icon name="camera" size={20}/>{t('nav.cctv')}</button></div>
+    {showCameras && mapInstance && <MapCameras map={mapInstance} onSelect={item => {setCamera(item); setPanel('cctv');}}/>}
+    <MapTools onLocate={locate} onZoomIn={()=>mapRef.current?.zoomIn()} onZoomOut={()=>mapRef.current?.zoomOut()}/>
+    {!live.error && !live.loading && <div className="map-point-summary"><StatusDock data={live.data} onClick={() => setPanel('forecast')}/></div>}
+    <div className="map-dock"><ModelSelector value={model} onChange={setModel}/><TimelineSlider value={timeValue} onChange={selectTime} baseTime={baseTime} disabled={baseTime === undefined}/></div>
+    {panel && <BottomSheet initial={0} label={panel === 'forecast' ? mapT('localForecast') : t('nav.cctv')}><header className="map-panel-heading"><div><h2>{panel === 'forecast' ? locationLabel : t(camera!.nameKey as never)}</h2><span>{panel === 'forecast' ? mapT('pointForecast') : t('cctv.pageSubtitle')}</span></div><button type="button" aria-label={mapT('close')} onClick={() => setPanel(null)}><Icon name="close"/></button></header>
+      {panel === 'forecast' ? <>{live.error ? <p role="status">{mapT('weatherUnavailable')}</p> : live.loading ? <p role="status">{productT('weatherLoading')}</p> : <><div className="map-forecast-sources"><span>{t('metrics.now')} <ConfidenceBadge meta={live.data.point.meta}/></span>{live.hourlyMeta && <span>{t('weather.hourly')} <ConfidenceBadge meta={live.hourlyMeta}/></span>}</div><div className="map-forecast-content"><CurrentWeatherCard point={live.data.point.data}/><HourlyStrip items={live.data.hourly.slice(0, 12)}/></div></>}</> : camera && <CctvPlayer key={camera.id} item={camera}/>}
+    </BottomSheet>}
     {actionStatus && <div className="map-action-status" role="status">{actionStatus}</div>}
-    <div className="mock-flag" data-live-loading={live.loading}>{productT(live.loading ? 'weatherLoading' : 'liveWeather')}</div><BottomNav/>
+    <div className="mock-flag" data-live-loading={live.loading}>{live.error ? mapT('weatherUnavailable') : productT(live.loading ? 'weatherLoading' : 'liveWeather')}</div><BottomNav/>
   </main>;
 }
 

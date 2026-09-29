@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import {useTranslations} from 'next-intl';
+import {useLocale, useTranslations} from 'next-intl';
 import type {AdviceResult, DailyPoint, HourlyPoint, NormalizedMarine, NormalizedPoint, NormalizedTide, Recommendation, SourceMeta} from '@/types/domain';
 import {Icon, type IconName} from './Icon';
 import {describeTide, recommendedReturnAt} from '@/lib/tide/calculate';
@@ -9,8 +9,10 @@ import {Link} from '@/i18n/navigation';
 
 export function ConfidenceBadge({meta}: {meta: SourceMeta}) {
   const t = useTranslations();
+  const locale = useLocale();
+  const issued = new Intl.DateTimeFormat(locale, {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit', hour12:false, timeZone:'Asia/Seoul'}).format(new Date(meta.issuedAt));
   return <span className={`confidence confidence-${meta.confidence}`} title={t(meta.sourceLabelKey as never)}>
-    <i aria-hidden="true"/>{t(`confidence.${meta.confidence}` as never)} · {t(meta.sourceLabelKey as never)} · {meta.issuedAt.slice(11, 16)}
+    <i aria-hidden="true"/>{t(`confidence.${meta.confidence}` as never)} · {t(meta.sourceLabelKey as never)} · <time dateTime={meta.issuedAt}>{issued}</time>
   </span>;
 }
 
@@ -50,9 +52,11 @@ export function MetricGrid({point, marine, compact = false}: {point: NormalizedP
 
 export function HourlyStrip({items}: {items: HourlyPoint[]}) {
   const t = useTranslations();
+  const locale = useLocale();
+  const time = new Intl.DateTimeFormat(locale, {hour:'2-digit', minute:'2-digit', hour12:false, timeZone:'Asia/Seoul'});
   return <section className="section-card panel-card"><div className="card-heading"><h3>{t('weather.hourly')}</h3></div>
     <div className="hourly-strip" tabIndex={0} aria-label={t('weather.hourly')}>{items.map((item, index) => <div key={item.at} className={index === 0 ? 'current' : ''}>
-      <span>{index === 0 ? t('timeline.now') : item.at.slice(11, 16)}</span><WeatherGlyph condition={item.condition} size="small"/>
+      <span>{time.format(new Date(item.at))}</span><WeatherGlyph condition={item.condition} size="small"/>
       <strong>{item.temperature}°</strong><small><span style={{transform:`rotate(${item.windDirection + 180}deg)`}}>↑</span> {item.windSpeed.toFixed(1)}</small>
     </div>)}</div>
   </section>;

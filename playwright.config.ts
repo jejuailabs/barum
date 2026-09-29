@@ -2,7 +2,7 @@ import {defineConfig, devices} from '@playwright/test';
 export default defineConfig({
   testDir: './tests/e2e', fullyParallel: true, workers: process.env.CI ? 2 : 4,
   retries: process.env.CI ? 1 : 0, reporter: [['list'], ['html', {open: 'never'}]],
-  use: {baseURL: process.env.E2E_BASE_URL ?? 'http://localhost:3100', locale: 'ko-KR', trace: 'retain-on-failure'},
+  use: {baseURL: process.env.E2E_BASE_URL ?? 'http://localhost:3100', locale: 'ko-KR', trace: 'retain-on-failure', channel: process.env.PLAYWRIGHT_CHANNEL},
   projects: [
     {name: 'desktop', use: {...devices['Desktop Chrome']}},
     {name: 'mobile', use: {...devices['Pixel 7']}}

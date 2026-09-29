@@ -3,6 +3,7 @@ import type {Confidence, Envelope, NormalizedMarine, NormalizedPoint, SourceMeta
 import {withSourceCache} from './cache';
 import {firstAvailable, isKoreanCoordinate} from './priority';
 import {fetchKmaUltraObservation} from './kma/ultraNcst';
+import {fetchKmaUltraForecastRun} from './kma/forecast';
 import {fetchOpenMeteoForecast} from './openmeteo/forecast';
 import {fetchOpenMeteoMarine} from './openmeteo/marine';
 
@@ -23,13 +24,20 @@ export async function resolveCurrentPoint(options: {lat: number; lng: number; km
 }
 
 export async function buildWeatherBundle(lat: number, lng: number, options: {kmaKey?: string; fetcher?: typeof fetch} = {}): Promise<WeatherBundle> {
+  const officialForecast = options.kmaKey && isKoreanCoordinate(lat, lng)
+    ? fetchKmaUltraForecastRun(lat, lng, options.kmaKey, options.fetcher).catch(() => null)
+    : Promise.resolve(null);
   const open = await fetchOpenMeteoForecast(lat, lng, options.fetcher);
   const selected = await resolveCurrentPoint({lat, lng, kmaKey: options.kmaKey, fetcher: options.fetcher, openPoint: open.point});
   const pointConfidence: Confidence = selected.name === 'KMA_ULTRA_NCST' ? 'high' : 'medium';
   const point: Envelope<NormalizedPoint> = {data: selected.value,
     meta: meta(selected.name, selected.name === 'KMA_ULTRA_NCST' ? 'sources.kmaUltra' : 'sources.openMeteo', selected.value.time, pointConfidence),
     error: selected.fallbackDepth ? {code: 'PARTIAL_DATA', messageKey: 'errors.fallback', retryable: true} : null};
-  const forecastMeta = meta('OPEN_METEO', 'sources.openMeteo', open.point.time, 'medium', 600);
+  const kmaForecast = await officialForecast;
+  const forecastMeta = kmaForecast
+    ? meta('KMA_ULTRA_FCST', 'sources.kmaUltraForecast', kmaForecast.issuedAt, 'high', 600)
+    : meta('OPEN_METEO', 'sources.openMeteo', open.point.time, 'medium', 600);
+  const dailyMeta = meta('OPEN_METEO', 'sources.openMeteo', open.point.time, 'medium', 2700);
   let marineData: NormalizedMarine;
   let marineMeta: SourceMeta;
   let marineError: Envelope<NormalizedMarine>['error'] = null;
@@ -43,8 +51,9 @@ export async function buildWeatherBundle(lat: number, lng: number, options: {kma
     marineError = {code: 'UPSTREAM_UNAVAILABLE', messageKey: 'errors.marineUnavailable', retryable: true};
   }
   return {point, marine: {data: marineData, meta: marineMeta, error: marineError},
-    hourly: {data: open.hourly.slice(0, 48), meta: forecastMeta, error: null},
-    daily: {data: open.daily.slice(0, 15), meta: {...forecastMeta, cacheTtlSec: 2700}, error: null}};
+    hourly: {data: (kmaForecast?.data ?? open.hourly).slice(0, 48), meta: forecastMeta,
+      error: options.kmaKey && isKoreanCoordinate(lat, lng) && !kmaForecast ? {code: 'PARTIAL_DATA', messageKey: 'errors.fallback', retryable: true} : null},
+    daily: {data: open.daily.slice(0, 15), meta: dailyMeta, error: null}};
 }
 
 export async function getWeatherBundle(lat: number, lng: number, fetcher?: typeof fetch) {

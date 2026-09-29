@@ -84,7 +84,7 @@
   "layers": {
     "label": "Map layers",
     "wind": "Wind",
-    "rain": "Rain · thunder",
+    "rain": "Rain",
     "rainDerived": "Lightning potential derived from heavy rain",
     "rainPreviewTime": "Moved to the nearest rain and thunder forecast",
     "temp": "Temp",
@@ -175,7 +175,8 @@
     "iconGrid": "DWD ICON global forecast",
     "gfsPreview": "GFS renderer preview",
     "ecmwfPreview": "ECMWF renderer preview",
-    "iconPreview": "ICON renderer preview"
+    "iconPreview": "ICON renderer preview",
+    "kmaUltraForecast": "KMA ultra-short forecast"
   },
   "confidence": {
     "high": "High confidence",
@@ -396,5 +397,15 @@
       "short": "ICON",
       "region": "Germany"
     }
+  },
+  "mapUi": {
+    "localForecast": "Local forecast",
+    "pointForecast": "Selected location · source and reference time below",
+    "close": "Close",
+    "kst": "KST",
+    "forecastHour": "+{hour} hours",
+    "gridError": "The map forecast could not be loaded, so the color layer is hidden.",
+    "rainGridUnavailable": "No live precipitation grid is available, so the map color layer is hidden.",
+    "weatherUnavailable": "Location forecast unavailable. Select the location again to retry."
   }
 }

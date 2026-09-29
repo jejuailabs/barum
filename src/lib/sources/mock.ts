@@ -44,7 +44,7 @@ export function getPhaseOneData(): PhaseOneData {
       meta: {...shared, source: 'MOCK_KHOA', sourceLabelKey: 'sources.tide', confidence: 'high',
         station: {id: 'DT_MOCK', name: 'Aewol', distanceKm: 2.3}}, error: null
     },
-    hourly: times.map((at, index) => ({at, condition: index < 5 ? 'partly' : 'cloudy',
+    hourly: times.map((at, index) => ({at: `${issuedAt.slice(0, 10)}T${at}:00+09:00`, condition: index < 5 ? 'partly' : 'cloudy',
       temperature: index > 1 && index < 5 ? 24 : 23, windSpeed: 4.8 - index * .28, windDirection: 270 - index * 8})),
     daily: Array.from({length: 15}, (_, index) => ({
       date: `2026-09-${String(22 + index).padStart(2, '0')}`, condition: index % 4 === 3 ? 'rain' as const : 'partly' as const,

@@ -84,7 +84,7 @@
   "layers": {
     "label": "地図レイヤー",
     "wind": "風",
-    "rain": "雨・雷",
+    "rain": "降水",
     "rainDerived": "強い降水から推定した雷の可能性",
     "rainPreviewTime": "最も近い雨・雷予報時刻に移動しました",
     "temp": "気温",
@@ -175,7 +175,8 @@
     "iconGrid": "DWD ICON全球予報",
     "gfsPreview": "GFS描画プレビュー",
     "ecmwfPreview": "ECMWF描画プレビュー",
-    "iconPreview": "ICON描画プレビュー"
+    "iconPreview": "ICON描画プレビュー",
+    "kmaUltraForecast": "韓国気象庁 超短期予報"
   },
   "confidence": {
     "high": "信頼度 高",
@@ -396,5 +397,15 @@
       "short": "ICON",
       "region": "ドイツ"
     }
+  },
+  "mapUi": {
+    "localForecast": "超短期予報",
+    "pointForecast": "選択地点の予報 · 提供元と基準時刻を確認",
+    "close": "閉じる",
+    "kst": "韓国時間",
+    "forecastHour": "+{hour}時間",
+    "gridError": "地図予報を読み込めないため、色のレイヤーを非表示にしています。",
+    "rainGridUnavailable": "実際の降水予報格子がないため、地図の色レイヤーを表示しません。",
+    "weatherUnavailable": "地点予報を取得できません。しばらくしてから再選択してください。"
   }
 }

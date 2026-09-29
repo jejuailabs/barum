@@ -84,7 +84,7 @@
   "layers": {
     "label": "지도 레이어",
     "wind": "바람",
-    "rain": "비·번개",
+    "rain": "강수",
     "rainDerived": "강한 강수 기반 번개 가능 표시",
     "rainPreviewTime": "가까운 비·번개 예보 시각으로 이동했습니다",
     "temp": "기온",
@@ -175,7 +175,8 @@
     "iconGrid": "DWD ICON 전지구 예보",
     "gfsPreview": "GFS 렌더러 미리보기",
     "ecmwfPreview": "ECMWF 렌더러 미리보기",
-    "iconPreview": "ICON 렌더러 미리보기"
+    "iconPreview": "ICON 렌더러 미리보기",
+    "kmaUltraForecast": "기상청 초단기예보"
   },
   "confidence": {
     "high": "신뢰 높음",
@@ -396,5 +397,15 @@
       "short": "ICON",
       "region": "독일"
     }
+  },
+  "mapUi": {
+    "localForecast": "초단기예보",
+    "pointForecast": "선택 지점 예보 · 제공기관과 기준 시각 확인",
+    "close": "닫기",
+    "kst": "한국 시간",
+    "forecastHour": "+{hour}시간",
+    "gridError": "지도 예보를 불러오지 못해 색상장을 표시하지 않습니다.",
+    "rainGridUnavailable": "실제 강수 예보 격자가 없어 지도 색상장을 표시하지 않습니다.",
+    "weatherUnavailable": "지점 예보를 불러오지 못했습니다. 잠시 후 다시 선택해 주세요."
   }
 }

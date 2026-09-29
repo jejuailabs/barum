@@ -4,7 +4,7 @@ import {firstAvailable, isKoreanCoordinate, selectWeatherSources} from '../../sr
 import {kmaCondition} from '../../src/lib/sources/kma/codes';
 import {toKmaGrid} from '../../src/lib/sources/kma/grid';
 import {fetchKmaUltraObservation, kmaObservationBase, normalizeKmaUltraObservation} from '../../src/lib/sources/kma/ultraNcst';
-import {fetchKmaShortForecast, fetchKmaUltraForecast, normalizeKmaHourly} from '../../src/lib/sources/kma/forecast';
+import {fetchKmaShortForecast, fetchKmaUltraForecast, fetchKmaUltraForecastRun, normalizeKmaHourly, ultraForecastBase} from '../../src/lib/sources/kma/forecast';
 import {fetchOpenMeteoForecast, normalizeOpenMeteoForecast, weatherCode} from '../../src/lib/sources/openmeteo/forecast';
 import {fetchOpenMeteoMarine, normalizeOpenMeteoMarine} from '../../src/lib/sources/openmeteo/marine';
 
@@ -85,6 +85,23 @@ describe('KMA adapters', () => {
     const fetcher = vi.fn(async () => new Response(JSON.stringify({response: {header: {resultCode: '00', resultMsg: 'NORMAL_SERVICE'}, body: {items: {item: [item]}}}}))) as unknown as typeof fetch;
     expect((await fetchKmaUltraForecast(33.46, 126.31, 'key', fetcher))[0].temperature).toBe(24);
     expect((await fetchKmaShortForecast(33.46, 126.31, 'key', fetcher))[0].temperature).toBe(24);
+  });
+
+  it('uses the latest available HH30 KMA run and preserves its issuance time', async () => {
+    expect(ultraForecastBase(new Date('2026-09-23T04:40:00Z'))).toEqual({baseDate:'20260923', baseTime:'1230'});
+    expect(ultraForecastBase(new Date('2026-09-23T04:50:00Z'))).toEqual({baseDate:'20260923', baseTime:'1330'});
+    expect(ultraForecastBase(new Date('2026-09-22T15:10:00Z'))).toEqual({baseDate:'20260922', baseTime:'2330'});
+    const item = {baseDate:'20260923', baseTime:'1230', fcstDate:'20260923', fcstTime:'1300', category:'T1H', fcstValue:'24'};
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      if (!String(input).includes('getUltraSrtFcst')) throw new Error('Unexpected endpoint');
+      return new Response(JSON.stringify({response:{header:{resultCode:'00', resultMsg:'NORMAL_SERVICE'}, body:{items:{item:[item, {...item, category:'RN1', fcstValue:'강수없음'}]}}}}));
+    });
+    const fetcher = fetchMock as unknown as typeof fetch;
+    const result = await fetchKmaUltraForecastRun(33.46, 126.31, 'key', fetcher);
+    expect(result.issuedAt).toBe('2026-09-23T12:30:00+09:00');
+    expect(result.data[0].temperature).toBe(24);
+    const requestUrl = fetchMock.mock.calls[0][0];
+    expect(new URL(requestUrl instanceof Request ? requestUrl.url : requestUrl).searchParams.get('base_time')).toMatch(/^\d{2}30$/);
   });
 });
 

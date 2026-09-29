@@ -5,8 +5,8 @@ export function lerp(a: number, b: number, fraction: number) {
 }
 
 export function interpolateFrames(a: GridFrame, b: GridFrame, fraction: number): GridFrame {
-  if (a.variable !== b.variable || a.width !== b.width || a.height !== b.height) throw new Error('Incompatible grid frames');
-  return {...a, validAt: fraction < .5 ? a.validAt : b.validAt,
+  if (a.variable !== b.variable || a.width !== b.width || a.height !== b.height || a.runAt !== b.runAt || a.model !== b.model || a.sourceLabelKey !== b.sourceLabelKey || a.units !== b.units || (['west', 'east', 'north', 'south'] as const).some(edge => a.bounds[edge] !== b.bounds[edge])) throw new Error('Incompatible grid frames');
+  return {...a, validAt: new Date(lerp(Date.parse(a.validAt), Date.parse(b.validAt), fraction)).toISOString(),
     values: a.values.map((value, index) => lerp(value, b.values[index], fraction)),
     u: a.u?.map((value, index) => lerp(value, b.u?.[index] ?? value, fraction)),
     v: a.v?.map((value, index) => lerp(value, b.v?.[index] ?? value, fraction))};

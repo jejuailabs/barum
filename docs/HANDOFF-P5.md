@@ -1,5 +1,11 @@
 # Phase 5 handoff — weather map layers
 
+## 2026-09-29 지도 UX·성능 업데이트
+
+최신 사용자 지시는 [MAP-UX.md](MAP-UX.md)를 따른다. Windy.com에 가까운 지도 중심 화면으로 정리하고, 기상청 초단기예보·CCTV를 지도에서 열 수 있게 했다. 이동 중 CPU 화면 재계산을 MapLibre ImageSource로 교체했고, 격자 LRU 캐시와 정지 상태 입자 제한을 적용했다. 기상청 키가 있는 한국 지점의 시간별 자료는 초단기예보를 우선하고 실제 출처·발표 시각을 화면에 표시한다. 키가 없으면 Open-Meteo라고 명시한다.
+
+로컬 프로덕션 빌드, 단위 테스트 76개, 지도 E2E 12개, 다크·라이트 접근성 및 번들 예산 검증을 통과했다. Chrome 1280×720의 대기·이동 측정은 각각 60fps였고, 3840×2160에서 입자 Canvas 300만 픽셀 상한을 확인했다. 강수 실데이터가 없을 때 합성 강수장을 숨기고 자료 부재를 표시한다. 안드로이드 중급 기기와 4K PC 프레임 속도 실측, 라이브 격자 수집·배포, 공식 KMA 키 연동은 남아 있다.
+
 ## Delivered
 
 - A strict grid contract for the Barum East Asia window (`108–148E`, `18–48N`) at 0.25° (`161×121`), covering Hong Kong, eastern China, Taiwan, the Korean Peninsula, and Japan. Point weather stays on the point BFF and is never used to build map fields.

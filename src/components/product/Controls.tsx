@@ -1,7 +1,7 @@
 'use client';
 
-import {useEffect, useState} from 'react';
-import {useTranslations} from 'next-intl';
+import {useEffect, useRef, useState} from 'react';
+import {useLocale, useTranslations} from 'next-intl';
 import {Link, usePathname} from '@/i18n/navigation';
 import {Icon, type IconName} from './Icon';
 import type {GridModel, GridVariable} from '@/types/domain';
@@ -18,7 +18,7 @@ export function SearchControl({onSearch, onLocate}: {onSearch?: (query: string) 
 
 const allLayers: Array<{id: string; icon: IconName}> = [
   {id: 'wind', icon: 'wind'}, {id: 'rain', icon: 'rain'}, {id: 'temp', icon: 'temp'},
-  {id: 'wave', icon: 'wave'}, {id: 'tide', icon: 'tide'}
+  {id: 'wave', icon: 'wave'}
 ];
 
 export function LayerRail({compact = false, value, onChange}: {compact?: boolean; value?: GridVariable; onChange?: (value: GridVariable) => void}) {
@@ -27,7 +27,7 @@ export function LayerRail({compact = false, value, onChange}: {compact?: boolean
   const active = value ?? localActive;
   const layers = compact ? allLayers.filter(item => ['wind', 'rain', 'wave'].includes(item.id)) : allLayers;
   return <div className="layer-rail" role="radiogroup" aria-label={layerT('label')}>
-    {layers.map(layer => <button key={layer.id} type="button" role="radio" aria-checked={active === layer.id} disabled={layer.id === 'tide'}
+    {layers.map(layer => <button key={layer.id} type="button" role="radio" aria-checked={active === layer.id}
       className={active === layer.id ? 'active' : ''} onClick={() => {const next = layer.id as GridVariable; setLocalActive(next); onChange?.(next);}}>
       <Icon name={layer.icon}/><span>{layerT(layer.id as never)}</span>
     </button>)}
@@ -84,26 +84,35 @@ export function LocationChip({live = false, onClick, label}: {live?: boolean; on
   </div>;
 }
 
-export function TimelineSlider({value: controlledValue, onChange}: {value?: number; onChange?: (value: number) => void} = {}) {
+export function TimelineSlider({value: controlledValue, onChange, baseTime, disabled = false}: {value?: number; onChange?: (value: number) => void; baseTime?: number; disabled?: boolean} = {}) {
   const timelineT = useTranslations('timeline');
+  const mapT = useTranslations('mapUi');
+  const locale = useLocale();
+  const [fallbackBase, setFallbackBase] = useState<number | null>(null);
+  useEffect(() => { setFallbackBase(Date.now()); }, []);
+  const origin = disabled ? null : baseTime ?? fallbackBase;
   const [localValue, setLocalValue] = useState(0);
   const value = controlledValue ?? localValue;
   const [playing, setPlaying] = useState(false);
+  const latest = useRef({value, onChange});
+  latest.current = {value, onChange};
   useEffect(() => {
     if (!playing) return;
     const timer = setInterval(() => {
-      const next = value >= 100 ? 0 : Math.min(100, value + 1);
-      setLocalValue(next); onChange?.(next);
-    }, 400);
+      if (document.hidden) return;
+      const next = latest.current.value >= 100 ? 0 : Math.min(100, latest.current.value + 1);
+      setLocalValue(next); latest.current.onChange?.(next);
+    }, 600);
     return () => clearInterval(timer);
-  }, [onChange, playing, value]);
+  }, [playing]);
   function update(next: number) { setLocalValue(next); onChange?.(next); }
   return <div className="timeline glass-panel">
-    <button type="button" className="timeline-play" aria-label={playing ? timelineT('pause') : timelineT('play')} onClick={() => setPlaying(value => !value)}><Icon name={playing ? 'pause' : 'play'}/></button>
+    <button type="button" className="timeline-play" aria-label={playing ? timelineT('pause') : timelineT('play')} disabled={disabled} onClick={() => setPlaying(value => !value)}><Icon name={playing ? 'pause' : 'play'}/></button>
     <div className="timeline-main">
+      <div className="timeline-heading"><button type="button" disabled={disabled} onClick={() => {setPlaying(false); update(origin ? Math.max(0, Math.min(100, Math.round((Date.now() - origin) / 3_600_000 / 1.2 * 2) / 2)) : 0);}}>{timelineT('now')}</button><output htmlFor="weather-time">{origin ? new Intl.DateTimeFormat(locale, {weekday: 'short', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Seoul'}).format(origin + value * 1.2 * 3_600_000) : timelineT('label')} <small>{mapT('kst')}</small></output></div>
       <label className="sr-only" htmlFor="weather-time">{timelineT('label')}</label>
-      <input id="weather-time" type="range" min="0" max="100" value={value} onChange={event => update(Number(event.target.value))}/>
-      <div className="timeline-labels"><span>{timelineT('now')}</span><span>{timelineT('oneHour')}</span><span>{timelineT('threeHours')}</span><span>{timelineT('tonight')}</span><span>{timelineT('tomorrow')}</span><span>{timelineT('sevenDays')}</span><span>{timelineT('fifteenDays')}</span></div>
+      <input id="weather-time" type="range" min="0" max="100" step="0.5" value={value} disabled={disabled} aria-valuetext={mapT('forecastHour', {hour: Math.round(value * 1.2)})} onChange={event => update(Number(event.target.value))}/>
+      <div className="timeline-labels">{[0, 1, 2, 3, 4, 5].map(day => <span key={day}>{origin ? new Intl.DateTimeFormat(locale, {weekday:'short', day:'numeric', timeZone:'Asia/Seoul'}).format(origin + day * 86_400_000) : mapT('forecastHour', {hour: day * 24})}</span>)}</div>
     </div>
   </div>;
 }

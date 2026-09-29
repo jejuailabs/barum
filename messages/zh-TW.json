@@ -84,7 +84,7 @@
   "layers": {
     "label": "地圖圖層",
     "wind": "風",
-    "rain": "降雨·雷電",
+    "rain": "降水",
     "rainDerived": "依強降水推算的雷電可能區",
     "rainPreviewTime": "已移至最近的降雨與雷電預報時段",
     "temp": "氣溫",
@@ -175,7 +175,8 @@
     "iconGrid": "DWD ICON全球預報",
     "gfsPreview": "GFS繪製預覽",
     "ecmwfPreview": "ECMWF繪製預覽",
-    "iconPreview": "ICON繪製預覽"
+    "iconPreview": "ICON繪製預覽",
+    "kmaUltraForecast": "韓國氣象廳超短期預報"
   },
   "confidence": {
     "high": "可信度高",
@@ -396,5 +397,15 @@
       "short": "ICON",
       "region": "德國"
     }
+  },
+  "mapUi": {
+    "localForecast": "超短期預報",
+    "pointForecast": "所選地點預報 · 請查看來源與基準時間",
+    "close": "關閉",
+    "kst": "韓國時間",
+    "forecastHour": "+{hour}小時",
+    "gridError": "無法載入地圖預報，因此已隱藏顏色圖層。",
+    "rainGridUnavailable": "沒有實際降水預報網格，因此不顯示地圖顏色圖層。",
+    "weatherUnavailable": "無法取得地點預報，請稍後重新選擇。"
   }
 }

@@ -84,7 +84,7 @@
   "layers": {
     "label": "地图图层",
     "wind": "风",
-    "rain": "降雨·雷电",
+    "rain": "降水",
     "rainDerived": "基于强降水推算的雷电可能区",
     "rainPreviewTime": "已移至最近的降雨和雷电预报时段",
     "temp": "气温",
@@ -175,7 +175,8 @@
     "iconGrid": "DWD ICON全球预报",
     "gfsPreview": "GFS渲染预览",
     "ecmwfPreview": "ECMWF渲染预览",
-    "iconPreview": "ICON渲染预览"
+    "iconPreview": "ICON渲染预览",
+    "kmaUltraForecast": "韩国气象厅超短期预报"
   },
   "confidence": {
     "high": "可信度高",
@@ -396,5 +397,15 @@
       "short": "ICON",
       "region": "德国"
     }
+  },
+  "mapUi": {
+    "localForecast": "超短期预报",
+    "pointForecast": "所选地点预报 · 请查看来源与基准时间",
+    "close": "关闭",
+    "kst": "韩国时间",
+    "forecastHour": "+{hour}小时",
+    "gridError": "无法加载地图预报，因此已隐藏颜色图层。",
+    "rainGridUnavailable": "没有实际降水预报网格，因此不显示地图颜色图层。",
+    "weatherUnavailable": "无法获取地点预报，请稍后重新选择。"
   }
 }
